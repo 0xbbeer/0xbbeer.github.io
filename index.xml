@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>0xbbeer Blog</title>
-    <link>https://0xbbeer.github.io/</link>
+    <link>https://www.0xbbeer.ru/</link>
     <description>Recent content on 0xbbeer Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="https://0xbbeer.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language><atom:link href="https://www.0xbbeer.ru/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title></title>
-      <link>https://0xbbeer.github.io/about/</link>
+      <link>https://www.0xbbeer.ru/about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://0xbbeer.github.io/about/</guid>
+      <guid>https://www.0xbbeer.ru/about/</guid>
       <description>Hello I am Anton.</description>
     </item>
     
