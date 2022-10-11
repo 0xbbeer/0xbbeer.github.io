@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>python on 0xbbeer Blog</title>
+    <link>https://www.0xbbeer.ru/tags/python/</link>
+    <description>Recent content in python on 0xbbeer Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 09 Oct 2022 00:09:21 +0300</lastBuildDate><atom:link href="https://www.0xbbeer.ru/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Python: SSL CERTIFICATE_VERIFY_FAILED</title>
+      <link>https://www.0xbbeer.ru/posts/python-ssl-cert-verify-failed/</link>
+      <pubDate>Sun, 09 Oct 2022 00:09:21 +0300</pubDate>
+      
+      <guid>https://www.0xbbeer.ru/posts/python-ssl-cert-verify-failed/</guid>
+      <description>Сертификаты для внутренних сервисов я выпускаю с помощью локального CA. Бывает так, что при работе в виртуальном окружении Python (venv), например с каким-нибудь внутренним API по средством HTTPS запросов, вылезает ошибка:
+1SSL: CERTIFICATE_VERIFY_FAILED Связано это с тем, что наше виртуальное окружение, а точнее модуль certifi, ничего не знает о нашем локальном центре сертификации.
+К счастью, на просторах инета нашлось простое решение1- добавить информацию о корневом сертификате в виртуальное окружение.
+Для этого:</description>
+    </item>
+    
+  </channel>
+</rss>

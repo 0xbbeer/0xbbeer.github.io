@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <link rel="preload" href="/lib/font-awesome/webfonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/lib/font-awesome/webfonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/lib/font-awesome/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/lib/JetBrainsMono/web/woff2/JetBrainsMono-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <script type="text/javascript" src="https://latest.cactus.chat/cactus.js"></script>
+  <link rel="stylesheet" href="https://latest.cactus.chat/style.css" type="text/css">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title> Настройка SSO в Netbox с помощью Keycloak | 0xbbeer Blog</title>
+  <link rel = 'canonical' href = 'https://www.0xbbeer.ru/posts/netbox-sso-with-keycloak/'>
+  <meta name="description" content="IT, travel, photo, beer, music">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="all,follow">
+  <meta name="googlebot" content="index,follow,snippet,archive">
+  <meta property="og:title" content="Настройка SSO в Netbox с помощью Keycloak" />
+<meta property="og:description" content="Для создания единой точки входа во внутренние сервисы с недавних пор я начал использовать проект Keycloak. Сегодня рассмотрим организацию SSO в Netbox с помощью него.
+В документации Netbox описана настройка только для двух провайдеров :
+Microsoft Azure AD Okta Netbox использует библиотеку python-soc-auth для взаимодействия с провайдерами.
+Список доступных провайдеров можно посмотреть тут
+Настройка клиента в Keycloak Заходим в веб интерфейс Keycloak, переходим на вкладку Clients и создаем нового клиента." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.0xbbeer.ru/posts/netbox-sso-with-keycloak/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-10-09T01:03:46+03:00" />
+<meta property="article:modified_time" content="2022-10-09T01:03:46+03:00" />
+
+
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Настройка SSO в Netbox с помощью Keycloak"/>
+<meta name="twitter:description" content="Для создания единой точки входа во внутренние сервисы с недавних пор я начал использовать проект Keycloak. Сегодня рассмотрим организацию SSO в Netbox с помощью него.
+В документации Netbox описана настройка только для двух провайдеров :
+Microsoft Azure AD Okta Netbox использует библиотеку python-soc-auth для взаимодействия с провайдерами.
+Список доступных провайдеров можно посмотреть тут
+Настройка клиента в Keycloak Заходим в веб интерфейс Keycloak, переходим на вкладку Clients и создаем нового клиента."/>
+
+  
+  
+  
+  <link rel="stylesheet" href="https://www.0xbbeer.ru/css/styles.94f653e9e151e28067a7c5dbbc4600cbd5a3c721e79faaf971e523c40f3b249b8e4f20bb57810dfffa8d559ca5c140fd56eb4cd9c0853113ad08e66afdb08bdd.css" integrity="sha512-lPZT6eFR4oBnp8XbvEYAy9WjxyHnn6r5ceUjxA87JJuOTyC7V4EN//qNVZylwUD9VutM2cCFMROtCOZq/bCL3Q=="> 
+
+  
+  
+  
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  
+
+  
+<link rel="icon" type="image/png" href="https://www.0xbbeer.ru/images/favicon.ico" />
+
+  
+  
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+  <div class="content index py4">
+
+  <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;" aria-label="Top of Page"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+        <li><a href="/">Home</a></li>
+         
+        <li><a href="/posts">All posts</a></li>
+         
+        <li><a href="/categories">Category</a></li>
+         
+        <li><a href="/about">About</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li>
+          <a class="icon" href=" https://www.0xbbeer.ru/posts/python-ssl-cert-verify-failed/" aria-label="Previous">
+            <i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i>
+          </a>
+        </li>
+        
+        
+        <li>
+          <a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" aria-label="Top of Page">
+            <i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i>
+          </a>
+        </li>
+        <li>
+          <a class="icon" href="#" aria-label="Share">
+            <i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i>
+          </a>
+        </li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      
+      <ul>
+  
+  
+    
+  
+  
+  <li>
+    <a class="icon" href="http://www.facebook.com/sharer.php?u=https%3a%2f%2fwww.0xbbeer.ru%2fposts%2fnetbox-sso-with-keycloak%2f" aria-label="Facebook">
+      <i class="fab fa-facebook " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://twitter.com/share?url=https%3a%2f%2fwww.0xbbeer.ru%2fposts%2fnetbox-sso-with-keycloak%2f&text=%d0%9d%d0%b0%d1%81%d1%82%d1%80%d0%be%d0%b9%d0%ba%d0%b0%20SSO%20%d0%b2%20Netbox%20%d1%81%20%d0%bf%d0%be%d0%bc%d0%be%d1%89%d1%8c%d1%8e%20Keycloak" aria-label="Twitter">
+      <i class="fab fa-twitter " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2fwww.0xbbeer.ru%2fposts%2fnetbox-sso-with-keycloak%2f&title=%d0%9d%d0%b0%d1%81%d1%82%d1%80%d0%be%d0%b9%d0%ba%d0%b0%20SSO%20%d0%b2%20Netbox%20%d1%81%20%d0%bf%d0%be%d0%bc%d0%be%d1%89%d1%8c%d1%8e%20Keycloak" aria-label="Linkedin">
+      <i class="fab fa-linkedin " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2fwww.0xbbeer.ru%2fposts%2fnetbox-sso-with-keycloak%2f&is_video=false&description=%d0%9d%d0%b0%d1%81%d1%82%d1%80%d0%be%d0%b9%d0%ba%d0%b0%20SSO%20%d0%b2%20Netbox%20%d1%81%20%d0%bf%d0%be%d0%bc%d0%be%d1%89%d1%8c%d1%8e%20Keycloak" aria-label="Pinterest">
+      <i class="fab fa-pinterest " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="mailto:?subject=%d0%9d%d0%b0%d1%81%d1%82%d1%80%d0%be%d0%b9%d0%ba%d0%b0%20SSO%20%d0%b2%20Netbox%20%d1%81%20%d0%bf%d0%be%d0%bc%d0%be%d1%89%d1%8c%d1%8e%20Keycloak&body=Check out this article: https%3a%2f%2fwww.0xbbeer.ru%2fposts%2fnetbox-sso-with-keycloak%2f" aria-label="Email">
+      <i class="fas fa-envelope " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://getpocket.com/save?url=https%3a%2f%2fwww.0xbbeer.ru%2fposts%2fnetbox-sso-with-keycloak%2f&title=%d0%9d%d0%b0%d1%81%d1%82%d1%80%d0%be%d0%b9%d0%ba%d0%b0%20SSO%20%d0%b2%20Netbox%20%d1%81%20%d0%bf%d0%be%d0%bc%d0%be%d1%89%d1%8c%d1%8e%20Keycloak" aria-label="Pocket">
+      <i class="fab fa-get-pocket " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://reddit.com/submit?url=https%3a%2f%2fwww.0xbbeer.ru%2fposts%2fnetbox-sso-with-keycloak%2f&title=%d0%9d%d0%b0%d1%81%d1%82%d1%80%d0%be%d0%b9%d0%ba%d0%b0%20SSO%20%d0%b2%20Netbox%20%d1%81%20%d0%bf%d0%be%d0%bc%d0%be%d1%89%d1%8c%d1%8e%20Keycloak" aria-label="reddit">
+      <i class="fab fa-reddit " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.tumblr.com/share/link?url=https%3a%2f%2fwww.0xbbeer.ru%2fposts%2fnetbox-sso-with-keycloak%2f&name=%d0%9d%d0%b0%d1%81%d1%82%d1%80%d0%be%d0%b9%d0%ba%d0%b0%20SSO%20%d0%b2%20Netbox%20%d1%81%20%d0%bf%d0%be%d0%bc%d0%be%d1%89%d1%8c%d1%8e%20Keycloak&description=%d0%94%d0%bb%d1%8f%20%d1%81%d0%be%d0%b7%d0%b4%d0%b0%d0%bd%d0%b8%d1%8f%20%d0%b5%d0%b4%d0%b8%d0%bd%d0%be%d0%b9%20%d1%82%d0%be%d1%87%d0%ba%d0%b8%20%d0%b2%d1%85%d0%be%d0%b4%d0%b0%20%d0%b2%d0%be%20%d0%b2%d0%bd%d1%83%d1%82%d1%80%d0%b5%d0%bd%d0%bd%d0%b8%d0%b5%20%d1%81%d0%b5%d1%80%d0%b2%d0%b8%d1%81%d1%8b%20%d1%81%20%d0%bd%d0%b5%d0%b4%d0%b0%d0%b2%d0%bd%d0%b8%d1%85%20%d0%bf%d0%be%d1%80%20%d1%8f%20%d0%bd%d0%b0%d1%87%d0%b0%d0%bb%20%d0%b8%d1%81%d0%bf%d0%be%d0%bb%d1%8c%d0%b7%d0%be%d0%b2%d0%b0%d1%82%d1%8c%20%d0%bf%d1%80%d0%be%d0%b5%d0%ba%d1%82%20Keycloak.%20%d0%a1%d0%b5%d0%b3%d0%be%d0%b4%d0%bd%d1%8f%20%d1%80%d0%b0%d1%81%d1%81%d0%bc%d0%be%d1%82%d1%80%d0%b8%d0%bc%20%d0%be%d1%80%d0%b3%d0%b0%d0%bd%d0%b8%d0%b7%d0%b0%d1%86%d0%b8%d1%8e%20SSO%20%d0%b2%20Netbox%20%d1%81%20%d0%bf%d0%be%d0%bc%d0%be%d1%89%d1%8c%d1%8e%20%d0%bd%d0%b5%d0%b3%d0%be.%0a%d0%92%20%d0%b4%d0%be%d0%ba%d1%83%d0%bc%d0%b5%d0%bd%d1%82%d0%b0%d1%86%d0%b8%d0%b8%20Netbox%20%d0%be%d0%bf%d0%b8%d1%81%d0%b0%d0%bd%d0%b0%20%d0%bd%d0%b0%d1%81%d1%82%d1%80%d0%be%d0%b9%d0%ba%d0%b0%20%d1%82%d0%be%d0%bb%d1%8c%d0%ba%d0%be%20%d0%b4%d0%bb%d1%8f%20%d0%b4%d0%b2%d1%83%d1%85%20%d0%bf%d1%80%d0%be%d0%b2%d0%b0%d0%b9%d0%b4%d0%b5%d1%80%d0%be%d0%b2%20%3a%0aMicrosoft%20Azure%20AD%20Okta%20Netbox%20%d0%b8%d1%81%d0%bf%d0%be%d0%bb%d1%8c%d0%b7%d1%83%d0%b5%d1%82%20%d0%b1%d0%b8%d0%b1%d0%bb%d0%b8%d0%be%d1%82%d0%b5%d0%ba%d1%83%20python-soc-auth%20%d0%b4%d0%bb%d1%8f%20%d0%b2%d0%b7%d0%b0%d0%b8%d0%bc%d0%be%d0%b4%d0%b5%d0%b9%d1%81%d1%82%d0%b2%d0%b8%d1%8f%20%d1%81%20%d0%bf%d1%80%d0%be%d0%b2%d0%b0%d0%b9%d0%b4%d0%b5%d1%80%d0%b0%d0%bc%d0%b8.%0a%d0%a1%d0%bf%d0%b8%d1%81%d0%be%d0%ba%20%d0%b4%d0%be%d1%81%d1%82%d1%83%d0%bf%d0%bd%d1%8b%d1%85%20%d0%bf%d1%80%d0%be%d0%b2%d0%b0%d0%b9%d0%b4%d0%b5%d1%80%d0%be%d0%b2%20%d0%bc%d0%be%d0%b6%d0%bd%d0%be%20%d0%bf%d0%be%d1%81%d0%bc%d0%be%d1%82%d1%80%d0%b5%d1%82%d1%8c%20%d1%82%d1%83%d1%82%0a%d0%9d%d0%b0%d1%81%d1%82%d1%80%d0%be%d0%b9%d0%ba%d0%b0%20%d0%ba%d0%bb%d0%b8%d0%b5%d0%bd%d1%82%d0%b0%20%d0%b2%20Keycloak%20%d0%97%d0%b0%d1%85%d0%be%d0%b4%d0%b8%d0%bc%20%d0%b2%20%d0%b2%d0%b5%d0%b1%20%d0%b8%d0%bd%d1%82%d0%b5%d1%80%d1%84%d0%b5%d0%b9%d1%81%20Keycloak%2c%20%d0%bf%d0%b5%d1%80%d0%b5%d1%85%d0%be%d0%b4%d0%b8%d0%bc%20%d0%bd%d0%b0%20%d0%b2%d0%ba%d0%bb%d0%b0%d0%b4%d0%ba%d1%83%20Clients%20%d0%b8%20%d1%81%d0%be%d0%b7%d0%b4%d0%b0%d0%b5%d0%bc%20%d0%bd%d0%be%d0%b2%d0%be%d0%b3%d0%be%20%d0%ba%d0%bb%d0%b8%d0%b5%d0%bd%d1%82%d0%b0." aria-label="Tumblr">
+      <i class="fab fa-tumblr " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fwww.0xbbeer.ru%2fposts%2fnetbox-sso-with-keycloak%2f&t=%d0%9d%d0%b0%d1%81%d1%82%d1%80%d0%be%d0%b9%d0%ba%d0%b0%20SSO%20%d0%b2%20Netbox%20%d1%81%20%d0%bf%d0%be%d0%bc%d0%be%d1%89%d1%8c%d1%8e%20Keycloak" aria-label="Hacker News">
+      <i class="fab fa-hacker-news " aria-hidden="true"></i>
+    </a>
+  </li>
+</ul>
+
+    </div>
+    
+    <div id="toc">
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#настройка-клиента-в-keycloak">Настройка клиента в Keycloak</a></li>
+    <li><a href="#настройка-netbox">Настройка Netbox</a></li>
+  </ul>
+</nav>
+    </div>
+    
+  </span>
+</div>
+
+
+  <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    <header>
+      <h1 class="posttitle" itemprop="name headline">
+        Настройка SSO в Netbox с помощью Keycloak
+      </h1>
+      <div class="meta">
+        
+        <div class="postdate">
+          
+          <time datetime="2022-10-09 01:03:46 &#43;0300 MSK" itemprop="datePublished">2022-10-09</time>
+          
+        </div>
+        
+        
+        
+        <div class="article-category">
+            <i class="fas fa-archive"></i>
+            
+            
+            <a class="category-link" href="/categories/it">IT</a>
+            
+        </div>
+        
+        
+        <div class="article-tag">
+            <i class="fas fa-tag"></i>
+            
+            
+            <a class="tag-link" href="/tags/sso" rel="tag">sso</a>
+            
+             ,  
+            <a class="tag-link" href="/tags/netbox" rel="tag">netbox</a>
+            
+             ,  
+            <a class="tag-link" href="/tags/keycloak" rel="tag">keycloak</a>
+            
+        </div>
+        
+      </div>
+    </header>
+
+  
+    
+    <div class="content" itemprop="articleBody">
+      <p>Для создания единой точки входа во внутренние сервисы с недавних пор я начал использовать проект <a href="https://www.keycloak.org/">Keycloak</a>. Сегодня рассмотрим организацию SSO в <a href="https://docs.netbox.dev/en/stable/">Netbox</a> с помощью него.</p>
+<p>В <a href="https://docs.netbox.dev/en/stable/administration/authentication/overview/">документации</a> Netbox описана настройка только для двух провайдеров :</p>
+<ul>
+<li>Microsoft Azure AD</li>
+<li>Okta</li>
+</ul>
+<p>Netbox использует библиотеку <a href="https://python-social-auth.readthedocs.io/en/latest/backends/keycloak.html">python-soc-auth</a> для взаимодействия с провайдерами.</p>
+<p>Список доступных провайдеров можно посмотреть <a href="https://python-social-auth.readthedocs.io/en/latest/backends/keycloak.html">тут</a></p>
+<h2 id="настройка-клиента-в-keycloak">Настройка клиента в Keycloak</h2>
+<hr>
+<p>Заходим в веб интерфейс Keycloak, переходим на вкладку Clients и создаем нового клиента.</p>
+<p>Заполняем поля:</p>
+<ul>
+<li>
+<p>Client ID - netbox;</p>
+</li>
+<li>
+<p>Enabled - On;</p>
+</li>
+<li>
+<p>Standard Flow Enabled - On;</p>
+</li>
+<li>
+<p>Valid Redirect URIs - URL нашего netbox сервера в виде <a href="https://netbox.0xbbeer.local/">https://netbox.0xbbeer.local/</a>* ;</p>
+</li>
+<li>
+<p>Backchannel Logout Session Required - On;</p>
+</li>
+</ul>
+<p>В секции  <strong>Fine Grain OpenID Connect Configuration</strong> заполняем:</p>
+<ul>
+<li>
+<p>User Info Signed Response Algorithm - RS256;</p>
+</li>
+<li>
+<p>Request Object Signature Algorithm - RS256;</p>
+</li>
+</ul>
+<p>Сохраняем и переходим на вкладку Mappers.</p>
+<p>Создаем mapper типа audience со следующими параметрами:</p>
+<ul>
+<li>
+<p>Protocol - openid-connect;</p>
+</li>
+<li>
+<p>Name - netbox;</p>
+</li>
+<li>
+<p>Mapper Type - Audience;</p>
+</li>
+<li>
+<p>Included Client Audience - выбираем созданного ранее клиента (netbox);</p>
+</li>
+<li>
+<p>Add to access token - ON;</p>
+</li>
+</ul>
+<h2 id="настройка-netbox">Настройка Netbox</h2>
+<p>В файл конфигурации <strong>configuration.py</strong>, который у меня находится по пути <strong>/opt/netbox/netbox/netbox</strong>, добавим следующие параметры:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ini" data-lang="ini"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span><span style="color:#50fa7b">REMOTE_AUTH_ENABLED</span> <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">True</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span><span style="color:#50fa7b">REMOTE_AUTH_BACKEND</span> <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#39;social_core.backends.keycloak.KeycloakOAuth2&#39;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span><span style="color:#50fa7b">REMOTE_AUTH_HEADER</span> <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#39;HTTP_REMOTE_USER&#39;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span><span style="color:#50fa7b">REMOTE_AUTH_AUTO_CREATE_USER</span> <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">True</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span><span style="color:#50fa7b">REMOTE_AUTH_DEFAULT_GROUPS</span> <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">[]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span><span style="color:#50fa7b">REMOTE_AUTH_DEFAULT_PERMISSIONS</span> <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">{}</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span><span style="color:#50fa7b">SOCIAL_AUTH_KEYCLOAK_KEY</span> <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#39;netbox&#39;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span><span style="color:#50fa7b">SOCIAL_AUTH_KEYCLOAK_SECRET</span> <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#39;DnSGgsdfg#sdgsdfs4fggsdfv$#gfasq&#39;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span><span><span style="color:#50fa7b">SOCIAL_AUTH_KEYCLOAK_PUBLIC_KEY</span> <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#39;/ZfnXP0cmg8Vh4AE6&gt;&#39;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20</span><span><span style="color:#50fa7b">SOCIAL_AUTH_KEYCLOAK_AUTHORIZATION_URL</span> <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#39;https://sso.0xbbeer.local:8443/realms/master/protocol/openid-connect/auth&#39;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22</span><span><span style="color:#50fa7b">SOCIAL_AUTH_KEYCLOAK_ACCESS_TOKEN_URL</span> <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#39;https://sso.0xbbeer.local:8443/realms/master/protocol/openid-connect/token&#39;</span>
+</span></span></code></pre></div><p>где:</p>
+<ul>
+<li>REMOTE_AUTH_ENABLED - Включает функционал удаленной аутентификации;</li>
+<li>REMOTE_AUTH_BACKEND - Устанавливает Keycloak в качестве провайдера для аутентификации\авторизации;</li>
+<li>REMOTE_AUTH_HEADER - Добавляет информацию о пользователе в HTTP-хедер;</li>
+<li>REMOTE_AUTH_AUTO_CREATE_USER - Создает внутреннего пользователя при авторизации;</li>
+<li>REMOTE_AUTH_DEFAULT_GROUPS - Группа Netbox назначаемая по умолчанию;</li>
+<li>REMOTE_AUTH_DEFAULT_PERMISSIONS - Права в Netbox по умолчанию;</li>
+<li>SOCIAL_AUTH_KEYCLOAK_KEY - Client ID<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> из Keycloak;</li>
+<li>SOCIAL_AUTH_KEYCLOAK_SECRET - Client Secret<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup> из Keycloak;</li>
+<li>SOCIAL_AUTH_KEYCLOAK_PUBLIC_KEY - RS256 Public Key<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup>  из Keycloak;</li>
+<li>SOCIAL_AUTH_KEYCLOAK_AUTHORIZATION_URL - Keycloak Auth<sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup>  Realm;</li>
+<li>SOCIAL_AUTH_KEYCLOAK_ACCESS_TOKEN_URL - Keycloak<sup id="fnref1:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup> Token Realm;</li>
+</ul>
+<p>Если Keycloak настроен по HTTPS соединению и сертификат был выпущен локальным CA, то необходимо добавить корневой сертификат CA в виртуальное окружение (путь: <strong>/opt/netbox/venv/</strong>), из которого запускается Netbox, иначе можно получить ошибку:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#ff79c6">SSL</span>: CERTIFICATE_VERIFY_FAILED
+</span></span></code></pre></div><p>Как добавить корневой сертификат в виртуальное окружение, можно почитать в статье <a href="/posts/python-ssl-cert-verify-failed/">Python: SSL CERTIFICATE_VERIFY_FAILED</a></p>
+<p>Сохранив настройки, перезапускаем Netbox и
+Apache.
+Страница авторизации в Netbox-e должна принять следующий вид:</p>
+<p><img src="/static/images/netbox-login.png" alt="netbox-login"></p>
+<p>Нажимаем Keycloak, нас перебросит на страницу входа, пробуем ввести свой логин и пароль.</p>
+<p>Если все успешно, то после входа, по умолчанию, у пользователя не будет прав. Не забудьте поправить их в конфиге (если нужно) или назначить через администратора<sup id="fnref:5"><a href="#fn:5" class="footnote-ref" role="doc-noteref">5</a></sup>.</p>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>Имя созданного клиента Keycloak - netbox в нашем случае;&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2">
+<p>Secret берем в настройках нашего клиента Keycloak, вкладка Credentials;&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:3">
+<p>Чтобы скопировать публичный ключ алгоритма, переходим в Realm Settings на вкладку Keys и нажимаем кнопку Public Key напротив RS256;&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:4">
+<p>Реалмы можно посмотреть в Realm Settings, щелкнув в строке Endpoints на OpenID Endpoint Configuration&#160;<a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a>&#160;<a href="#fnref1:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:5">
+<p>Как создать суперпользователя в Netbox - <a href="https://docs.netbox.dev/en/stable/installation/3-netbox/#create-a-super-user">create-a-super-user</a>&#160;<a href="#fnref:5" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+
+    </div>
+  </article>
+
+  
+  
+
+
+
+
+
+
+  <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/posts">All posts</a></li>
+         
+          <li><a href="/categories">Category</a></li>
+         
+          <li><a href="/about">About</a></li>
+        
+      </ul>
+    </div>
+
+    
+    <div id="toc-footer" style="display: none">
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#настройка-клиента-в-keycloak">Настройка клиента в Keycloak</a></li>
+    <li><a href="#настройка-netbox">Настройка Netbox</a></li>
+  </ul>
+</nav>
+    </div>
+    
+
+    <div id="share-footer" style="display: none">
+      
+      <ul>
+  
+  
+    
+  
+  
+  <li>
+    <a class="icon" href="http://www.facebook.com/sharer.php?u=https%3a%2f%2fwww.0xbbeer.ru%2fposts%2fnetbox-sso-with-keycloak%2f" aria-label="Facebook">
+      <i class="fab fa-facebook fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://twitter.com/share?url=https%3a%2f%2fwww.0xbbeer.ru%2fposts%2fnetbox-sso-with-keycloak%2f&text=%d0%9d%d0%b0%d1%81%d1%82%d1%80%d0%be%d0%b9%d0%ba%d0%b0%20SSO%20%d0%b2%20Netbox%20%d1%81%20%d0%bf%d0%be%d0%bc%d0%be%d1%89%d1%8c%d1%8e%20Keycloak" aria-label="Twitter">
+      <i class="fab fa-twitter fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2fwww.0xbbeer.ru%2fposts%2fnetbox-sso-with-keycloak%2f&title=%d0%9d%d0%b0%d1%81%d1%82%d1%80%d0%be%d0%b9%d0%ba%d0%b0%20SSO%20%d0%b2%20Netbox%20%d1%81%20%d0%bf%d0%be%d0%bc%d0%be%d1%89%d1%8c%d1%8e%20Keycloak" aria-label="Linkedin">
+      <i class="fab fa-linkedin fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2fwww.0xbbeer.ru%2fposts%2fnetbox-sso-with-keycloak%2f&is_video=false&description=%d0%9d%d0%b0%d1%81%d1%82%d1%80%d0%be%d0%b9%d0%ba%d0%b0%20SSO%20%d0%b2%20Netbox%20%d1%81%20%d0%bf%d0%be%d0%bc%d0%be%d1%89%d1%8c%d1%8e%20Keycloak" aria-label="Pinterest">
+      <i class="fab fa-pinterest fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="mailto:?subject=%d0%9d%d0%b0%d1%81%d1%82%d1%80%d0%be%d0%b9%d0%ba%d0%b0%20SSO%20%d0%b2%20Netbox%20%d1%81%20%d0%bf%d0%be%d0%bc%d0%be%d1%89%d1%8c%d1%8e%20Keycloak&body=Check out this article: https%3a%2f%2fwww.0xbbeer.ru%2fposts%2fnetbox-sso-with-keycloak%2f" aria-label="Email">
+      <i class="fas fa-envelope fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://getpocket.com/save?url=https%3a%2f%2fwww.0xbbeer.ru%2fposts%2fnetbox-sso-with-keycloak%2f&title=%d0%9d%d0%b0%d1%81%d1%82%d1%80%d0%be%d0%b9%d0%ba%d0%b0%20SSO%20%d0%b2%20Netbox%20%d1%81%20%d0%bf%d0%be%d0%bc%d0%be%d1%89%d1%8c%d1%8e%20Keycloak" aria-label="Pocket">
+      <i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://reddit.com/submit?url=https%3a%2f%2fwww.0xbbeer.ru%2fposts%2fnetbox-sso-with-keycloak%2f&title=%d0%9d%d0%b0%d1%81%d1%82%d1%80%d0%be%d0%b9%d0%ba%d0%b0%20SSO%20%d0%b2%20Netbox%20%d1%81%20%d0%bf%d0%be%d0%bc%d0%be%d1%89%d1%8c%d1%8e%20Keycloak" aria-label="reddit">
+      <i class="fab fa-reddit fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.tumblr.com/share/link?url=https%3a%2f%2fwww.0xbbeer.ru%2fposts%2fnetbox-sso-with-keycloak%2f&name=%d0%9d%d0%b0%d1%81%d1%82%d1%80%d0%be%d0%b9%d0%ba%d0%b0%20SSO%20%d0%b2%20Netbox%20%d1%81%20%d0%bf%d0%be%d0%bc%d0%be%d1%89%d1%8c%d1%8e%20Keycloak&description=%d0%94%d0%bb%d1%8f%20%d1%81%d0%be%d0%b7%d0%b4%d0%b0%d0%bd%d0%b8%d1%8f%20%d0%b5%d0%b4%d0%b8%d0%bd%d0%be%d0%b9%20%d1%82%d0%be%d1%87%d0%ba%d0%b8%20%d0%b2%d1%85%d0%be%d0%b4%d0%b0%20%d0%b2%d0%be%20%d0%b2%d0%bd%d1%83%d1%82%d1%80%d0%b5%d0%bd%d0%bd%d0%b8%d0%b5%20%d1%81%d0%b5%d1%80%d0%b2%d0%b8%d1%81%d1%8b%20%d1%81%20%d0%bd%d0%b5%d0%b4%d0%b0%d0%b2%d0%bd%d0%b8%d1%85%20%d0%bf%d0%be%d1%80%20%d1%8f%20%d0%bd%d0%b0%d1%87%d0%b0%d0%bb%20%d0%b8%d1%81%d0%bf%d0%be%d0%bb%d1%8c%d0%b7%d0%be%d0%b2%d0%b0%d1%82%d1%8c%20%d0%bf%d1%80%d0%be%d0%b5%d0%ba%d1%82%20Keycloak.%20%d0%a1%d0%b5%d0%b3%d0%be%d0%b4%d0%bd%d1%8f%20%d1%80%d0%b0%d1%81%d1%81%d0%bc%d0%be%d1%82%d1%80%d0%b8%d0%bc%20%d0%be%d1%80%d0%b3%d0%b0%d0%bd%d0%b8%d0%b7%d0%b0%d1%86%d0%b8%d1%8e%20SSO%20%d0%b2%20Netbox%20%d1%81%20%d0%bf%d0%be%d0%bc%d0%be%d1%89%d1%8c%d1%8e%20%d0%bd%d0%b5%d0%b3%d0%be.%0a%d0%92%20%d0%b4%d0%be%d0%ba%d1%83%d0%bc%d0%b5%d0%bd%d1%82%d0%b0%d1%86%d0%b8%d0%b8%20Netbox%20%d0%be%d0%bf%d0%b8%d1%81%d0%b0%d0%bd%d0%b0%20%d0%bd%d0%b0%d1%81%d1%82%d1%80%d0%be%d0%b9%d0%ba%d0%b0%20%d1%82%d0%be%d0%bb%d1%8c%d0%ba%d0%be%20%d0%b4%d0%bb%d1%8f%20%d0%b4%d0%b2%d1%83%d1%85%20%d0%bf%d1%80%d0%be%d0%b2%d0%b0%d0%b9%d0%b4%d0%b5%d1%80%d0%be%d0%b2%20%3a%0aMicrosoft%20Azure%20AD%20Okta%20Netbox%20%d0%b8%d1%81%d0%bf%d0%be%d0%bb%d1%8c%d0%b7%d1%83%d0%b5%d1%82%20%d0%b1%d0%b8%d0%b1%d0%bb%d0%b8%d0%be%d1%82%d0%b5%d0%ba%d1%83%20python-soc-auth%20%d0%b4%d0%bb%d1%8f%20%d0%b2%d0%b7%d0%b0%d0%b8%d0%bc%d0%be%d0%b4%d0%b5%d0%b9%d1%81%d1%82%d0%b2%d0%b8%d1%8f%20%d1%81%20%d0%bf%d1%80%d0%be%d0%b2%d0%b0%d0%b9%d0%b4%d0%b5%d1%80%d0%b0%d0%bc%d0%b8.%0a%d0%a1%d0%bf%d0%b8%d1%81%d0%be%d0%ba%20%d0%b4%d0%be%d1%81%d1%82%d1%83%d0%bf%d0%bd%d1%8b%d1%85%20%d0%bf%d1%80%d0%be%d0%b2%d0%b0%d0%b9%d0%b4%d0%b5%d1%80%d0%be%d0%b2%20%d0%bc%d0%be%d0%b6%d0%bd%d0%be%20%d0%bf%d0%be%d1%81%d0%bc%d0%be%d1%82%d1%80%d0%b5%d1%82%d1%8c%20%d1%82%d1%83%d1%82%0a%d0%9d%d0%b0%d1%81%d1%82%d1%80%d0%be%d0%b9%d0%ba%d0%b0%20%d0%ba%d0%bb%d0%b8%d0%b5%d0%bd%d1%82%d0%b0%20%d0%b2%20Keycloak%20%d0%97%d0%b0%d1%85%d0%be%d0%b4%d0%b8%d0%bc%20%d0%b2%20%d0%b2%d0%b5%d0%b1%20%d0%b8%d0%bd%d1%82%d0%b5%d1%80%d1%84%d0%b5%d0%b9%d1%81%20Keycloak%2c%20%d0%bf%d0%b5%d1%80%d0%b5%d1%85%d0%be%d0%b4%d0%b8%d0%bc%20%d0%bd%d0%b0%20%d0%b2%d0%ba%d0%bb%d0%b0%d0%b4%d0%ba%d1%83%20Clients%20%d0%b8%20%d1%81%d0%be%d0%b7%d0%b4%d0%b0%d0%b5%d0%bc%20%d0%bd%d0%be%d0%b2%d0%be%d0%b3%d0%be%20%d0%ba%d0%bb%d0%b8%d0%b5%d0%bd%d1%82%d0%b0." aria-label="Tumblr">
+      <i class="fab fa-tumblr fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fwww.0xbbeer.ru%2fposts%2fnetbox-sso-with-keycloak%2f&t=%d0%9d%d0%b0%d1%81%d1%82%d1%80%d0%be%d0%b9%d0%ba%d0%b0%20SSO%20%d0%b2%20Netbox%20%d1%81%20%d0%bf%d0%be%d0%bc%d0%be%d1%89%d1%8c%d1%8e%20Keycloak" aria-label="Hacker News">
+      <i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      
+        <a id="menu-toggle" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;" aria-label="Menu">
+          <i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+        <a id="toc-toggle" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;" aria-label="TOC">
+          <i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share-toggle" class="icon" href="#" onclick="$('#share-footer').toggle();return false;" aria-label="Share">
+          <i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" aria-label="Top of Page">
+          <i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+
+  <footer id="footer">
+  <div class="footer-left">
+    Copyright  &copy; 2022  0xbbeer Blog 
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+        <li><a href="/">Home</a></li>
+         
+        <li><a href="/posts">All posts</a></li>
+         
+        <li><a href="/categories">Category</a></li>
+         
+        <li><a href="/about">About</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+
+  </div>
+</body>
+
+<link rel="stylesheet" href=/lib/font-awesome/css/all.min.css>
+<script src=/lib/jquery/jquery.min.js></script>
+<script src=/js/main.js></script>
+
+<script src=/js/code-copy.js></script>
+
+
+
+
+</html>

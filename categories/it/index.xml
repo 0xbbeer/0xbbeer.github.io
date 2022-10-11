@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>0xbbeer Blog</title>
-    <link>https://www.0xbbeer.ru/</link>
-    <description>Recent content on 0xbbeer Blog</description>
+    <title>IT on 0xbbeer Blog</title>
+    <link>https://www.0xbbeer.ru/categories/it/</link>
+    <description>Recent content in IT on 0xbbeer Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 09 Oct 2022 01:03:46 +0300</lastBuildDate><atom:link href="https://www.0xbbeer.ru/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 09 Oct 2022 01:03:46 +0300</lastBuildDate><atom:link href="https://www.0xbbeer.ru/categories/it/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Настройка SSO в Netbox с помощью Keycloak</title>
       <link>https://www.0xbbeer.ru/posts/netbox-sso-with-keycloak/</link>
@@ -30,17 +30,6 @@ Microsoft Azure AD Okta Netbox использует библиотеку python-
 1SSL: CERTIFICATE_VERIFY_FAILED Связано это с тем, что наше виртуальное окружение, а точнее модуль certifi, ничего не знает о нашем локальном центре сертификации.
 К счастью, на просторах инета нашлось простое решение1- добавить информацию о корневом сертификате в виртуальное окружение.
 Для этого:</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://www.0xbbeer.ru/about/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.0xbbeer.ru/about/</guid>
-      <description>About me Привет! Меня зовут Антон! Я системный инженер из уездного города О. Мечтаю стать системным архитектором и сьездить в Антарктиду.
-Этот блог - сборник заметок, которые, возможно, кому-то пригодятся в повседневной работе. Если мои &amp;ldquo;записки начинающего инженера&amp;rdquo; помогут хоть одному человеку - значит, не зря клацаю по клавиатуре! :)
-На данный момент не знаю, что из этого всего выйдет, есть желание писать не только об айти, но и о музыке, путешествиях, пиве и прочих радостях жизни.</description>
     </item>
     
   </channel>
