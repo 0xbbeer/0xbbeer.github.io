@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>msca on 0xbbeer Blog</title>
+    <link>https://www.0xbbeer.ru/tags/msca/</link>
+    <description>Recent content in msca on 0xbbeer Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 01 Nov 2022 16:30:09 +0300</lastBuildDate><atom:link href="https://www.0xbbeer.ru/tags/msca/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Python: Генерация сертификатов из Microsoft CA в Linux</title>
+      <link>https://www.0xbbeer.ru/posts/python-msca-cert-gen/</link>
+      <pubDate>Tue, 01 Nov 2022 16:30:09 +0300</pubDate>
+      
+      <guid>https://www.0xbbeer.ru/posts/python-msca-cert-gen/</guid>
+      <description>Те, кто в своей инфраструктуре использует Microsoft CA, могли часто встречаться с проблемой выпуска сертификатов для linux машин\cервисов.
+Все время приходилось вручную генерировать сертификат с помощью openssl, а далее идти в веб интерфейс MS CA,запрашивать, потом скачивать сертификат и заливать его на машину.
+К счастью, нашелся модуль python, который облегачет получение сертификатов в Linux- certsrv
+Документация к модулю
+Рассмотрим пример получения сертификата:
+При установке модуля по умолчанию используется basic-аутентификация, мы будем рассматривать аутентификацию с помощью NTLM, поэтому установим модуль с добавлением [ntlm] к названию.</description>
+    </item>
+    
+  </channel>
+</rss>

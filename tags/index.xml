@@ -6,13 +6,94 @@
     <description>Recent content in Tags on 0xbbeer Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 09 Oct 2022 01:03:46 +0300</lastBuildDate><atom:link href="https://www.0xbbeer.ru/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 02 Nov 2022 23:42:07 +0300</lastBuildDate><atom:link href="https://www.0xbbeer.ru/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>linux</title>
+      <link>https://www.0xbbeer.ru/tags/linux/</link>
+      <pubDate>Wed, 02 Nov 2022 23:42:07 +0300</pubDate>
+      
+      <guid>https://www.0xbbeer.ru/tags/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ssh</title>
+      <link>https://www.0xbbeer.ru/tags/ssh/</link>
+      <pubDate>Wed, 02 Nov 2022 23:42:07 +0300</pubDate>
+      
+      <guid>https://www.0xbbeer.ru/tags/ssh/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>gitlab</title>
+      <link>https://www.0xbbeer.ru/tags/gitlab/</link>
+      <pubDate>Wed, 02 Nov 2022 22:35:55 +0300</pubDate>
+      
+      <guid>https://www.0xbbeer.ru/tags/gitlab/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>keycloak</title>
       <link>https://www.0xbbeer.ru/tags/keycloak/</link>
-      <pubDate>Sun, 09 Oct 2022 01:03:46 +0300</pubDate>
+      <pubDate>Wed, 02 Nov 2022 22:35:55 +0300</pubDate>
       
       <guid>https://www.0xbbeer.ru/tags/keycloak/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>sso</title>
+      <link>https://www.0xbbeer.ru/tags/sso/</link>
+      <pubDate>Wed, 02 Nov 2022 22:35:55 +0300</pubDate>
+      
+      <guid>https://www.0xbbeer.ru/tags/sso/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>librenms</title>
+      <link>https://www.0xbbeer.ru/tags/librenms/</link>
+      <pubDate>Wed, 02 Nov 2022 22:35:39 +0300</pubDate>
+      
+      <guid>https://www.0xbbeer.ru/tags/librenms/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>msca</title>
+      <link>https://www.0xbbeer.ru/tags/msca/</link>
+      <pubDate>Tue, 01 Nov 2022 16:30:09 +0300</pubDate>
+      
+      <guid>https://www.0xbbeer.ru/tags/msca/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>openssl</title>
+      <link>https://www.0xbbeer.ru/tags/openssl/</link>
+      <pubDate>Tue, 01 Nov 2022 16:30:09 +0300</pubDate>
+      
+      <guid>https://www.0xbbeer.ru/tags/openssl/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>python</title>
+      <link>https://www.0xbbeer.ru/tags/python/</link>
+      <pubDate>Tue, 01 Nov 2022 16:30:09 +0300</pubDate>
+      
+      <guid>https://www.0xbbeer.ru/tags/python/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tls</title>
+      <link>https://www.0xbbeer.ru/tags/tls/</link>
+      <pubDate>Tue, 01 Nov 2022 16:30:09 +0300</pubDate>
+      
+      <guid>https://www.0xbbeer.ru/tags/tls/</guid>
       <description></description>
     </item>
     
@@ -22,24 +103,6 @@
       <pubDate>Sun, 09 Oct 2022 01:03:46 +0300</pubDate>
       
       <guid>https://www.0xbbeer.ru/tags/netbox/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>sso</title>
-      <link>https://www.0xbbeer.ru/tags/sso/</link>
-      <pubDate>Sun, 09 Oct 2022 01:03:46 +0300</pubDate>
-      
-      <guid>https://www.0xbbeer.ru/tags/sso/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>python</title>
-      <link>https://www.0xbbeer.ru/tags/python/</link>
-      <pubDate>Sun, 09 Oct 2022 00:09:21 +0300</pubDate>
-      
-      <guid>https://www.0xbbeer.ru/tags/python/</guid>
       <description></description>
     </item>
     

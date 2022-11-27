@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>librenms on 0xbbeer Blog</title>
+    <link>https://www.0xbbeer.ru/tags/librenms/</link>
+    <description>Recent content in librenms on 0xbbeer Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 02 Nov 2022 22:35:39 +0300</lastBuildDate><atom:link href="https://www.0xbbeer.ru/tags/librenms/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>LibreNMS: настройка SSO с Keycloak</title>
+      <link>https://www.0xbbeer.ru/posts/sso-for-librenms/</link>
+      <pubDate>Wed, 02 Nov 2022 22:35:39 +0300</pubDate>
+      
+      <guid>https://www.0xbbeer.ru/posts/sso-for-librenms/</guid>
+      <description>Всем добрый день! Вообще инструкция по настройке SSO в LibreNMS есть в офф.документации, но там нет инфы о настройке связки с Keycloak, поэтому оставлю заметку тут.
+Создаем клиента в Keycloak Заходим в админку Keycloak и создаем нового клиента.
+Заполняем поля:
+Client ID: librenms; Enabled: On; Client Protocol: openid-connect; Access Type: confidential; Valid Redirect URIs: URL вашего LibreNMS, с которого будет осуществлятся редирект,например, librenms.0xbbeer.ru/* Остальные параметры можно оставить по умолчнию или заполнить как нужно Вам.</description>
+    </item>
+    
+  </channel>
+</rss>

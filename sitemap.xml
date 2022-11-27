@@ -3,34 +3,67 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://www.0xbbeer.ru/</loc>
-    <lastmod>2022-10-09T01:03:46+03:00</lastmod>
+    <lastmod>2022-11-02T23:42:07+03:00</lastmod>
   </url><url>
     <loc>https://www.0xbbeer.ru/categories/</loc>
-    <lastmod>2022-10-09T01:03:46+03:00</lastmod>
+    <lastmod>2022-11-02T23:42:07+03:00</lastmod>
   </url><url>
     <loc>https://www.0xbbeer.ru/categories/it/</loc>
-    <lastmod>2022-10-09T01:03:46+03:00</lastmod>
+    <lastmod>2022-11-02T23:42:07+03:00</lastmod>
+  </url><url>
+    <loc>https://www.0xbbeer.ru/tags/linux/</loc>
+    <lastmod>2022-11-02T23:42:07+03:00</lastmod>
+  </url><url>
+    <loc>https://www.0xbbeer.ru/posts/linux-ssh-notes/</loc>
+    <lastmod>2022-11-02T23:42:07+03:00</lastmod>
+  </url><url>
+    <loc>https://www.0xbbeer.ru/posts/</loc>
+    <lastmod>2022-11-02T23:42:07+03:00</lastmod>
+  </url><url>
+    <loc>https://www.0xbbeer.ru/tags/ssh/</loc>
+    <lastmod>2022-11-02T23:42:07+03:00</lastmod>
+  </url><url>
+    <loc>https://www.0xbbeer.ru/tags/</loc>
+    <lastmod>2022-11-02T23:42:07+03:00</lastmod>
+  </url><url>
+    <loc>https://www.0xbbeer.ru/tags/gitlab/</loc>
+    <lastmod>2022-11-02T22:35:55+03:00</lastmod>
+  </url><url>
+    <loc>https://www.0xbbeer.ru/posts/config-sso-for-gitlab/</loc>
+    <lastmod>2022-11-02T22:35:55+03:00</lastmod>
   </url><url>
     <loc>https://www.0xbbeer.ru/tags/keycloak/</loc>
-    <lastmod>2022-10-09T01:03:46+03:00</lastmod>
+    <lastmod>2022-11-02T22:35:55+03:00</lastmod>
+  </url><url>
+    <loc>https://www.0xbbeer.ru/tags/sso/</loc>
+    <lastmod>2022-11-02T22:35:55+03:00</lastmod>
+  </url><url>
+    <loc>https://www.0xbbeer.ru/tags/librenms/</loc>
+    <lastmod>2022-11-02T22:35:39+03:00</lastmod>
+  </url><url>
+    <loc>https://www.0xbbeer.ru/posts/sso-for-librenms/</loc>
+    <lastmod>2022-11-02T22:35:39+03:00</lastmod>
+  </url><url>
+    <loc>https://www.0xbbeer.ru/tags/msca/</loc>
+    <lastmod>2022-11-01T16:30:09+03:00</lastmod>
+  </url><url>
+    <loc>https://www.0xbbeer.ru/tags/openssl/</loc>
+    <lastmod>2022-11-01T16:30:09+03:00</lastmod>
+  </url><url>
+    <loc>https://www.0xbbeer.ru/tags/python/</loc>
+    <lastmod>2022-11-01T16:30:09+03:00</lastmod>
+  </url><url>
+    <loc>https://www.0xbbeer.ru/posts/python-msca-cert-gen/</loc>
+    <lastmod>2022-11-01T16:30:09+03:00</lastmod>
+  </url><url>
+    <loc>https://www.0xbbeer.ru/tags/tls/</loc>
+    <lastmod>2022-11-01T16:30:09+03:00</lastmod>
   </url><url>
     <loc>https://www.0xbbeer.ru/tags/netbox/</loc>
     <lastmod>2022-10-09T01:03:46+03:00</lastmod>
   </url><url>
-    <loc>https://www.0xbbeer.ru/posts/</loc>
-    <lastmod>2022-10-09T01:03:46+03:00</lastmod>
-  </url><url>
-    <loc>https://www.0xbbeer.ru/tags/sso/</loc>
-    <lastmod>2022-10-09T01:03:46+03:00</lastmod>
-  </url><url>
-    <loc>https://www.0xbbeer.ru/tags/</loc>
-    <lastmod>2022-10-09T01:03:46+03:00</lastmod>
-  </url><url>
     <loc>https://www.0xbbeer.ru/posts/netbox-sso-with-keycloak/</loc>
     <lastmod>2022-10-09T01:03:46+03:00</lastmod>
-  </url><url>
-    <loc>https://www.0xbbeer.ru/tags/python/</loc>
-    <lastmod>2022-10-09T00:09:21+03:00</lastmod>
   </url><url>
     <loc>https://www.0xbbeer.ru/posts/python-ssl-cert-verify-failed/</loc>
     <lastmod>2022-10-09T00:09:21+03:00</lastmod>
@@ -39,6 +72,9 @@
     <lastmod>2022-10-09T00:09:21+03:00</lastmod>
   </url><url>
     <loc>https://www.0xbbeer.ru/about/</loc>
+    <priority>0</priority>
+  </url><url>
+    <loc>https://www.0xbbeer.ru/useful-links/</loc>
     <priority>0</priority>
   </url>
 </urlset>
