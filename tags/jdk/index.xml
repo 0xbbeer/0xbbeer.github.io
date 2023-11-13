@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>jdk on 0xbbeer Blog</title>
+    <link>https://www.0xbbeer.ru/tags/jdk/</link>
+    <description>Recent content in jdk on 0xbbeer Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 10 Feb 2023 02:04:33 +0300</lastBuildDate><atom:link href="https://www.0xbbeer.ru/tags/jdk/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>JDK: Добавление корневого сертификата</title>
+      <link>https://www.0xbbeer.ru/posts/jdk-install-root-cert/</link>
+      <pubDate>Fri, 10 Feb 2023 02:04:33 +0300</pubDate>
+      
+      <guid>https://www.0xbbeer.ru/posts/jdk-install-root-cert/</guid>
+      <description>LibericaJDK
+Если у Вас установленна LibericaJDK на Windows, сделайте следующие действия:
+Переходим в папку security в установленной LibericaJDK: 1cd C:\Program Files\BellSoft\LibericaJDK-11\lib\security Скачать корневой 0XBBEER-CA.crt с центра сертификации Запустить команду добавления сертификата в хранилище: 1..\..\bin\keytool -import -trustcacerts -keystore .\cacerts -noprompt -alias 0XBBEER-CA-CER -file ПутьК\0XBBEER-CA.crt -alias - Как будет называться наш сертификат в хранилище
+-file - Путь к сертификату</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,12 +1,190 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>0xbbeer Blog</title>
     <link>https://www.0xbbeer.ru/</link>
     <description>Recent content on 0xbbeer Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 02 Nov 2022 23:42:07 +0300</lastBuildDate><atom:link href="https://www.0xbbeer.ru/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 09 Mar 2023 01:03:46 +0300</lastBuildDate><atom:link href="https://www.0xbbeer.ru/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Netbox: Синхронизация с VMWare</title>
+      <link>https://www.0xbbeer.ru/posts/netbox-sync-with-vmware/</link>
+      <pubDate>Thu, 09 Mar 2023 01:03:46 +0300</pubDate>
+      
+      <guid>https://www.0xbbeer.ru/posts/netbox-sync-with-vmware/</guid>
+      <description>В документации NetBox указано, что инструмент предназначен для того, чтобы выступать в качестве &amp;ldquo;Источника истины&amp;rdquo;. Автоматический импорт настоятельно не рекомендуется.
+Есть решение для тех, кто хочет получить функциональность автоматического импорта ВМ, сетей и прочих сущностей из VmWare в NetBox в автоматическом режиме: netbox-sync
+Требования На момент написания статьи
+Програмное обеспечение: python &amp;gt;= 3.6 NetBox &amp;gt;= 2.9 VMWare vCenter &amp;gt;= 6.0 Пакеты Python:
+packaging requests==2.24.0 wheel pyvmomi==6.7.3 aiodns==2.0.0 Установка В примере устанавливаем на Debian 11</description>
+    </item>
+    
+    <item>
+      <title>JDK: Добавление корневого сертификата</title>
+      <link>https://www.0xbbeer.ru/posts/jdk-install-root-cert/</link>
+      <pubDate>Fri, 10 Feb 2023 02:04:33 +0300</pubDate>
+      
+      <guid>https://www.0xbbeer.ru/posts/jdk-install-root-cert/</guid>
+      <description>LibericaJDK
+Если у Вас установленна LibericaJDK на Windows, сделайте следующие действия:
+Переходим в папку security в установленной LibericaJDK: 1cd C:\Program Files\BellSoft\LibericaJDK-11\lib\security Скачать корневой 0XBBEER-CA.crt с центра сертификации Запустить команду добавления сертификата в хранилище: 1..\..\bin\keytool -import -trustcacerts -keystore .\cacerts -noprompt -alias 0XBBEER-CA-CER -file ПутьК\0XBBEER-CA.crt -alias - Как будет называться наш сертификат в хранилище
+-file - Путь к сертификату</description>
+    </item>
+    
+    <item>
+      <title>GitLab: Просмотр отчетов Allure в браузере</title>
+      <link>https://www.0xbbeer.ru/posts/gitlab-watch-allure-in-browser/</link>
+      <pubDate>Fri, 10 Feb 2023 02:03:33 +0300</pubDate>
+      
+      <guid>https://www.0xbbeer.ru/posts/gitlab-watch-allure-in-browser/</guid>
+      <description>Чтобы не скачивать артифкаты с отчетами Allure1, а просматривать их прямо в браузере, открывая из веб-интерфейса гитлаб, помогут следующие строки gitlab.rb:
+1nginx[&amp;#39;custom_gitlab_server_config&amp;#39;] = &amp;#34;location ~ /artifacts/file/.*\.(html|txt|md|css|js|jpg|jpeg|png|json)$ { 2 rewrite ^(.*)/file/(.*)$ $1/raw/$2 last; 3 return 500; 4} 5 6location ~ /artifacts/raw/.*\.(html|txt|md|css|js|jpg|jpeg|png|json)$ { 7 proxy_cache off; 8 proxy_pass http://gitlab-workhorse; 9 proxy_hide_header Content-Disposition; 10 add_header Content-Disposition &amp;#39;inline;&amp;#39;; 11}&amp;#34; Далее нужно переконфигурировать GitLab:
+1gitlab-ctl reconfigure И теперь можно просматривать отчеты прямо из GitLab.
+https://qameta.io/allure-report/&amp;#160;&amp;#x21a9;&amp;#xfe0e;</description>
+    </item>
+    
+    <item>
+      <title>MSSQL: Перенос логинов в Always ON</title>
+      <link>https://www.0xbbeer.ru/posts/mssql-alwayson-logins/</link>
+      <pubDate>Fri, 10 Feb 2023 02:03:33 +0300</pubDate>
+      
+      <guid>https://www.0xbbeer.ru/posts/mssql-alwayson-logins/</guid>
+      <description>При включении базы MSSQL в Always ON необходимо перенести всех пользователей (логины), созданных для этой БД, иначе, если реплика станет мастером, к базе данных будет невозможно подключиться.
+Пользователи в двух БД должны иметь ОДИНАКОВЫЙ СИД , т.е. просто создать аналогичного пользователя с паролем НЕДОСТАТОЧНО.
+Чтобы создать пользователя на реплике с таким же СИДом, как и на мастере, необходимо:
+Создать хранимую процедуру в БД (взято здесь): 1USE [master] 2 GO 3 IF OBJECT_ID (&amp;#39;sp_hexadecimal&amp;#39;) IS NOT NULL 4 DROP PROCEDURE sp_hexadecimal 5 GO 6 CREATE PROCEDURE [dbo].</description>
+    </item>
+    
+    <item>
+      <title>Zabbix: Автоматическое создание Zabbix Template с помощью snmpwalk</title>
+      <link>https://www.0xbbeer.ru/posts/snmpwalk-to-zabbix-template/</link>
+      <pubDate>Sun, 29 Jan 2023 15:09:47 +0300</pubDate>
+      
+      <guid>https://www.0xbbeer.ru/posts/snmpwalk-to-zabbix-template/</guid>
+      <description>Коллега поделился хорошим репозиторием - https://github.com/Sean-Bradley/SNMPWALK2ZABBIX
+Если вы вдруг создавали или создаете шаблоны SNMP для Zabbix-a , то этот модуль для python сохранит ваше драгоценное время.
+Суть в том, что модуль автоматически опрашиват устройства и создает все нужные айтемы (что является самым затратным по времени), Вам остается только изменить имена айтемов, типы данных и настроить нужные триггеры.</description>
+    </item>
+    
+    <item>
+      <title>MongoDB: Replica Set</title>
+      <link>https://www.0xbbeer.ru/posts/mongodb-replica-set/</link>
+      <pubDate>Sun, 29 Jan 2023 14:45:39 +0300</pubDate>
+      
+      <guid>https://www.0xbbeer.ru/posts/mongodb-replica-set/</guid>
+      <description>Офф. документация: https://www.mongodb.com/docs/manual/core/replica-set-elections/#std-label-replica-set-elections
+Разработчики рекомендуют использовать как минимум 3 сервера с MongoDB, а при использовании четного кол-ва применять арбитра.
+Минимальные настройки репликации MongoDB с 3-мя серверами:
+Установите MongoDB на каждый сервер;
+Внесите изменения в mongod.conf на всех серверах:
+1replication: 2 replSetName: rs0 Файл mongod.conf можно найти:
+Linux — /etc/mongod.conf Windows — C:\\Program Files\MongoDB\Server\4.2\bin\mongod.conf После внесения изменений перезапускаем MongoDB.
+Убедитесь, что порт 27017 доступен для серверов с репликами, для этого проверьте настройки фаервола и строку bind_ip в mongodb.</description>
+    </item>
+    
+    <item>
+      <title>Linux: Установка Arch Linux с systemd-boot</title>
+      <link>https://www.0xbbeer.ru/posts/arch-install/</link>
+      <pubDate>Tue, 20 Dec 2022 01:03:46 +0300</pubDate>
+      
+      <guid>https://www.0xbbeer.ru/posts/arch-install/</guid>
+      <description>Памятка себе по установке Arch linux.
+Установка Проверим получение адреса
+1ip a Разметим диск
+1cfdisk /dev/sda1 EFI System 512 M
+/dev/sda2 SWAP 8G
+/dev/sda3 Linux root (x86-64)
+Создадим ФС
+Для root 1mkfs.ext4 /dev/sda3 Для SWAP 1mkswap /dev/sda2 Для EFI Boot 1mkfs.fat -F32 /dev/sda1 Примонтируем разделы
+1# root 2mount /dev/sda3 /mnt 3# efi 4mount --mkdir /dev/sda1 /mnt/boot 5# swap 6swapon /dev/sda2 Установим основные пакеты
+1pacstrap -K /mnt base linux linux-firmware base-devel Сгенерируем fstab</description>
+    </item>
+    
+    <item>
+      <title>VmWare: Мониторинг VSAN с помощью Prometheus</title>
+      <link>https://www.0xbbeer.ru/posts/vmware-vsan-monitoring-with-prometheus/</link>
+      <pubDate>Sat, 17 Dec 2022 11:35:39 +0300</pubDate>
+      
+      <guid>https://www.0xbbeer.ru/posts/vmware-vsan-monitoring-with-prometheus/</guid>
+      <description>Для мониторинга VSAN с помощью Prometheus можно использовать набор скриптов в репозитории VmWare с одноименным названием: vsan-integration-for-prometheus
+Есть два способа мониторинга:
+Забирать метрики с хостов ESXI с помощью Prometheus. Хосты ESXI могут отдавать метрики для Prometheus с эндпоинта /vsanmetrics из коробки; Развернуть prometheus exporter, который будет обращаться к VCenter, забирать данные по API, конвертировать их в формат для Prometheus, и отдавать их на эндпоинт экспортера /vsan/metrics/; Рассмотрим эти два способа, при этом первый способ мы выполним с помощью скриптов, второй с помощью Docker.</description>
+    </item>
+    
+    <item>
+      <title>Jenkins: Настройка SSL</title>
+      <link>https://www.0xbbeer.ru/posts/jenkins-config-ssl/</link>
+      <pubDate>Sat, 17 Dec 2022 01:03:46 +0300</pubDate>
+      
+      <guid>https://www.0xbbeer.ru/posts/jenkins-config-ssl/</guid>
+      <description>Получаем сертификат и ключ Для начала необходимо сгенерировать сертификат и ключ для сервера. Это можно сделать с помощью модуля описанного здесь: Автоматическая генерация сертификатов из MS CA на Linux
+Так же нам понадобиться сертификат Удостоверяющего центра.
+Конвертируем сертификат и ключ в формат PKCS12 Команда ниже конвертирует сертификат сервера, УЦ и ключ в файл jenkins.p12.
+Для этого нам нужно:
+ca.crt - Сертификат УЦ: server.key - ключ от SSL сертификата сервера; server.crt - SSL сертификат сервера; 1openssl pkcs12 -export -out jenkins.</description>
+    </item>
+    
+    <item>
+      <title>Jenkins: Настройка SSO c Keycloak</title>
+      <link>https://www.0xbbeer.ru/posts/jenkins-config-sso/</link>
+      <pubDate>Sat, 17 Dec 2022 01:03:46 +0300</pubDate>
+      
+      <guid>https://www.0xbbeer.ru/posts/jenkins-config-sso/</guid>
+      <description>Для настройки SSO c Keycloak используется следующий плагин: https://github.com/jenkinsci/keycloak-plugin?ysclid=lah1l3z94g845988575
+Установка плагина в Jenkins На странице Jenkins dashboard нажимаем Manage Jenkins.
+На странице Manage Jenkins нажимаем Manage Plugins.
+Нажимаем на вкладку Available.
+Фильтруем плагины по слову &amp;ldquo;keycloak&amp;rdquo;
+Находим и отмечаем плагин Keycloak Authentication Plugin Версия 2.3.0 , дале нажимаем “Install without restart” или “Download now and install after restart”.
+Перезапускаем Jenkins.
+1systemctl restart jenkins Создание клиента в Keycloak Заходим в админку Keycloak и создаем нового клиента.</description>
+    </item>
+    
+    <item>
+      <title>Jenkins: Установка на Debian 11</title>
+      <link>https://www.0xbbeer.ru/posts/jenkins-install-debian/</link>
+      <pubDate>Sat, 17 Dec 2022 01:03:46 +0300</pubDate>
+      
+      <guid>https://www.0xbbeer.ru/posts/jenkins-install-debian/</guid>
+      <description>Установим Open-JDK
+1sudo apt install openjdk-11-jdk Добавим GPG-Key и репозиторий c Jenkins:
+GPG Key:
+1curl -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo tee \ 2/usr/share/keyrings/jenkins-keyring.asc &amp;gt; /dev/null Репозиторий:
+1echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \ 2https://pkg.jenkins.io/debian-stable binary/ | sudo tee /etc/apt/sources.list.d/jenkins.list &amp;gt; /dev/null Обновляем:
+1apt update Устанавливаем Jenkins:
+1apt install jenkins По умолчанию сервисы в Debian запускаются автоматически.
+Запуск Jenkins выполняется небыстро. После запуска сервиса может выдать ошибку по таймауту запуска,- если это случилось, можно поправить таймаут в юнит файле Jenkinsa:</description>
+    </item>
+    
+    <item>
+      <title>SonarQube: Настройка SSO с Keycloak</title>
+      <link>https://www.0xbbeer.ru/posts/sonarqube-sso/</link>
+      <pubDate>Sat, 17 Dec 2022 01:03:46 +0300</pubDate>
+      
+      <guid>https://www.0xbbeer.ru/posts/sonarqube-sso/</guid>
+      <description>Для настройки SSO в SonaQube используется плагин: https://github.com/vaulttec/sonar-auth-oidc
+Установка плагина для аутентификации в SonarQube Установите плагин OpenID Connect Authentication for SonarQube через магазин приложений SonarQube и перезагрузите сервер.
+Создаем клиента в Keycloak Заходим в админку Keycloak и создаем нового клиента.
+Заполняем поля:
+Client ID: sonarqube; Enabled: On; Client Protocol: openid-connect; Access Type: confidential; Valid Redirect URIs: URL вашего LibreNMS, с которого будет осуществляться редирект,например, sonarqube.0xbbeer.ru/* Далее переходим на вкладку Mappers и нажимаем создать mapper.</description>
+    </item>
+    
+    <item>
+      <title>SonarQube: Установка на Debian 11</title>
+      <link>https://www.0xbbeer.ru/posts/sonarqube-install/</link>
+      <pubDate>Sat, 17 Dec 2022 01:03:46 +0300</pubDate>
+      
+      <guid>https://www.0xbbeer.ru/posts/sonarqube-install/</guid>
+      <description>Шаг 1. Установите Java 11 Обновите пакеты.
+$ sudo apt update Установите зависимости.
+$ sudo apt install wget unzip curl gnupg2 ca-certificates lsb-release socat -y Установите Java 11.
+$ sudo apt-get install openjdk-11-jre -y Шаг 2. Установите PostgreSQL Добавьте репозиторий PostgreSQL.
+$ sudo sh -c &amp;#39;echo &amp;#34;deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main&amp;#34; &amp;gt;&amp;gt; /etc/apt/sources.list.d/pgdg.list&amp;#39; Добавьте ключ PostgreSQL.
+$ wget -q https://www.postgresql.org/media/keys/ACCC4CF8.asc -O - | sudo apt-key add - Обновите систему.
+$ sudo apt update Установите PostgreSQL.</description>
+    </item>
+    
     <item>
       <title>Linux: SSH - полезные заметки</title>
       <link>https://www.0xbbeer.ru/posts/linux-ssh-notes/</link>
@@ -20,6 +198,17 @@ Local Port Forwarding Пробросить порт 5432 c хоста host2.0xbb
     </item>
     
     <item>
+      <title>About Me</title>
+      <link>https://www.0xbbeer.ru/about/</link>
+      <pubDate>Wed, 02 Nov 2022 22:35:55 +0300</pubDate>
+      
+      <guid>https://www.0xbbeer.ru/about/</guid>
+      <description>Привет! Меня зовут Антон! Я системный инженер из уездного города О. Мечтаю стать системным архитектором и сьездить в Антарктиду.
+Этот блог - сборник заметок, которые, возможно, кому-то пригодятся в повседневной работе. Если мои &amp;ldquo;записки начинающего инженера&amp;rdquo; помогут хоть одному человеку - значит, не зря клацаю по клавиатуре! :)
+На данный момент не знаю, что из этого всего выйдет, есть желание писать не только об айти, но и о музыке, путешествиях, пиве и прочих радостях жизни.</description>
+    </item>
+    
+    <item>
       <title>GitLab: SSO с помощью Keycloak</title>
       <link>https://www.0xbbeer.ru/posts/config-sso-for-gitlab/</link>
       <pubDate>Wed, 02 Nov 2022 22:35:55 +0300</pubDate>
@@ -27,7 +216,7 @@ Local Port Forwarding Пробросить порт 5432 c хоста host2.0xbb
       <guid>https://www.0xbbeer.ru/posts/config-sso-for-gitlab/</guid>
       <description>Система на момент настройки:
 CentOS 7 GitLab 14.7 Создаем клиента в Keycloak Тут все просто:
-Client ID: gitlab; Enabled: On; Client Protocol: openid-connect; Access Type: confidential; Valid Redirect URIs: https://gitlab.0xbbeer.ru/* Сохраняем созданного клиента и переходим на вкладку Credentials. Копируем значение поля Secret, он нам пригодится в будущем.
+Client ID: gitlab; Enabled: On; Client Protocol: openid-connect; Access Type: confidential; Valid Redirect URIs: https://gitlab.0xbbeer.ru/* Сохраняем созданного клиента и переходим на вкладку Credentials. Копируем значение поля Secret, оно нам пригодится в будущем.
 Настраиваем GitLab Далее открываем файл gitlab.rb (PATH: /etc/gitlab/gitlab.rb ) и добавляем строки:
 1gitlab_rails[&amp;#39;omniauth_enabled&amp;#39;] = true 2gitlab_rails[&amp;#39;omniauth_allow_single_sign_on&amp;#39;] = true 3gitlab_rails[&amp;#39;omniauth_auto_sign_in_with_provider&amp;#39;] = &amp;#39;openid_connect&amp;#39; 4gitlab_rails[&amp;#39;omniauth_block_auto_created_users&amp;#39;] = false 5gitlab_rails[&amp;#39;omniauth_auto_link_ldap_user&amp;#39;] = false 6gitlab_rails[&amp;#39;omniauth_auto_link_ldap_user] = [&amp;#34;openid_connect&amp;#34;] omniauth_enabled - включает Omniauth (по умолчанию включено);</description>
     </item>
@@ -81,17 +270,6 @@ Microsoft Azure AD Okta Netbox использует библиотеку python-
 1SSL: CERTIFICATE_VERIFY_FAILED Связано это с тем, что наше виртуальное окружение, а точнее модуль certifi, ничего не знает о нашем локальном центре сертификации.
 К счастью, на просторах инета нашлось простое решение1- добавить информацию о корневом сертификате в виртуальное окружение.
 Для этого:</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://www.0xbbeer.ru/about/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.0xbbeer.ru/about/</guid>
-      <description>About me Привет! Меня зовут Антон! Я системный инженер из уездного города О. Мечтаю стать системным архитектором и сьездить в Антарктиду.
-Этот блог - сборник заметок, которые, возможно, кому-то пригодятся в повседневной работе. Если мои &amp;ldquo;записки начинающего инженера&amp;rdquo; помогут хоть одному человеку - значит, не зря клацаю по клавиатуре! :)
-На данный момент не знаю, что из этого всего выйдет, есть желание писать не только об айти, но и о музыке, путешествиях, пиве и прочих радостях жизни.</description>
     </item>
     
     <item>

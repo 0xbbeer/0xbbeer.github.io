@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>allure on 0xbbeer Blog</title>
+    <link>https://www.0xbbeer.ru/tags/allure/</link>
+    <description>Recent content in allure on 0xbbeer Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 10 Feb 2023 02:03:33 +0300</lastBuildDate><atom:link href="https://www.0xbbeer.ru/tags/allure/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>GitLab: Просмотр отчетов Allure в браузере</title>
+      <link>https://www.0xbbeer.ru/posts/gitlab-watch-allure-in-browser/</link>
+      <pubDate>Fri, 10 Feb 2023 02:03:33 +0300</pubDate>
+      
+      <guid>https://www.0xbbeer.ru/posts/gitlab-watch-allure-in-browser/</guid>
+      <description>Чтобы не скачивать артифкаты с отчетами Allure1, а просматривать их прямо в браузере, открывая из веб-интерфейса гитлаб, помогут следующие строки gitlab.rb:
+1nginx[&amp;#39;custom_gitlab_server_config&amp;#39;] = &amp;#34;location ~ /artifacts/file/.*\.(html|txt|md|css|js|jpg|jpeg|png|json)$ { 2 rewrite ^(.*)/file/(.*)$ $1/raw/$2 last; 3 return 500; 4} 5 6location ~ /artifacts/raw/.*\.(html|txt|md|css|js|jpg|jpeg|png|json)$ { 7 proxy_cache off; 8 proxy_pass http://gitlab-workhorse; 9 proxy_hide_header Content-Disposition; 10 add_header Content-Disposition &amp;#39;inline;&amp;#39;; 11}&amp;#34; Далее нужно переконфигурировать GitLab:
+1gitlab-ctl reconfigure И теперь можно просматривать отчеты прямо из GitLab.
+https://qameta.io/allure-report/&amp;#160;&amp;#x21a9;&amp;#xfe0e;</description>
+    </item>
+    
+  </channel>
+</rss>

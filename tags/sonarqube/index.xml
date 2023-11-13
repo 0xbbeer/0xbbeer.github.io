@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>sonarqube on 0xbbeer Blog</title>
+    <link>https://www.0xbbeer.ru/tags/sonarqube/</link>
+    <description>Recent content in sonarqube on 0xbbeer Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 17 Dec 2022 01:03:46 +0300</lastBuildDate><atom:link href="https://www.0xbbeer.ru/tags/sonarqube/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>SonarQube: Настройка SSO с Keycloak</title>
+      <link>https://www.0xbbeer.ru/posts/sonarqube-sso/</link>
+      <pubDate>Sat, 17 Dec 2022 01:03:46 +0300</pubDate>
+      
+      <guid>https://www.0xbbeer.ru/posts/sonarqube-sso/</guid>
+      <description>Для настройки SSO в SonaQube используется плагин: https://github.com/vaulttec/sonar-auth-oidc
+Установка плагина для аутентификации в SonarQube Установите плагин OpenID Connect Authentication for SonarQube через магазин приложений SonarQube и перезагрузите сервер.
+Создаем клиента в Keycloak Заходим в админку Keycloak и создаем нового клиента.
+Заполняем поля:
+Client ID: sonarqube; Enabled: On; Client Protocol: openid-connect; Access Type: confidential; Valid Redirect URIs: URL вашего LibreNMS, с которого будет осуществляться редирект,например, sonarqube.0xbbeer.ru/* Далее переходим на вкладку Mappers и нажимаем создать mapper.</description>
+    </item>
+    
+    <item>
+      <title>SonarQube: Установка на Debian 11</title>
+      <link>https://www.0xbbeer.ru/posts/sonarqube-install/</link>
+      <pubDate>Sat, 17 Dec 2022 01:03:46 +0300</pubDate>
+      
+      <guid>https://www.0xbbeer.ru/posts/sonarqube-install/</guid>
+      <description>Шаг 1. Установите Java 11 Обновите пакеты.
+$ sudo apt update Установите зависимости.
+$ sudo apt install wget unzip curl gnupg2 ca-certificates lsb-release socat -y Установите Java 11.
+$ sudo apt-get install openjdk-11-jre -y Шаг 2. Установите PostgreSQL Добавьте репозиторий PostgreSQL.
+$ sudo sh -c &amp;#39;echo &amp;#34;deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main&amp;#34; &amp;gt;&amp;gt; /etc/apt/sources.list.d/pgdg.list&amp;#39; Добавьте ключ PostgreSQL.
+$ wget -q https://www.postgresql.org/media/keys/ACCC4CF8.asc -O - | sudo apt-key add - Обновите систему.
+$ sudo apt update Установите PostgreSQL.</description>
+    </item>
+    
+  </channel>
+</rss>

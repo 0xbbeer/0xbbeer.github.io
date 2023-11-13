@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>zabbix on 0xbbeer Blog</title>
+    <link>https://www.0xbbeer.ru/tags/zabbix/</link>
+    <description>Recent content in zabbix on 0xbbeer Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 29 Jan 2023 15:09:47 +0300</lastBuildDate><atom:link href="https://www.0xbbeer.ru/tags/zabbix/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Zabbix: Автоматическое создание Zabbix Template с помощью snmpwalk</title>
+      <link>https://www.0xbbeer.ru/posts/snmpwalk-to-zabbix-template/</link>
+      <pubDate>Sun, 29 Jan 2023 15:09:47 +0300</pubDate>
+      
+      <guid>https://www.0xbbeer.ru/posts/snmpwalk-to-zabbix-template/</guid>
+      <description>Коллега поделился хорошим репозиторием - https://github.com/Sean-Bradley/SNMPWALK2ZABBIX
+Если вы вдруг создавали или создаете шаблоны SNMP для Zabbix-a , то этот модуль для python сохранит ваше драгоценное время.
+Суть в том, что модуль автоматически опрашиват устройства и создает все нужные айтемы (что является самым затратным по времени), Вам остается только изменить имена айтемов, типы данных и настроить нужные триггеры.</description>
+    </item>
+    
+  </channel>
+</rss>

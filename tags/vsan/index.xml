@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>vsan on 0xbbeer Blog</title>
+    <link>https://www.0xbbeer.ru/tags/vsan/</link>
+    <description>Recent content in vsan on 0xbbeer Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 17 Dec 2022 11:35:39 +0300</lastBuildDate><atom:link href="https://www.0xbbeer.ru/tags/vsan/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>VmWare: Мониторинг VSAN с помощью Prometheus</title>
+      <link>https://www.0xbbeer.ru/posts/vmware-vsan-monitoring-with-prometheus/</link>
+      <pubDate>Sat, 17 Dec 2022 11:35:39 +0300</pubDate>
+      
+      <guid>https://www.0xbbeer.ru/posts/vmware-vsan-monitoring-with-prometheus/</guid>
+      <description>Для мониторинга VSAN с помощью Prometheus можно использовать набор скриптов в репозитории VmWare с одноименным названием: vsan-integration-for-prometheus
+Есть два способа мониторинга:
+Забирать метрики с хостов ESXI с помощью Prometheus. Хосты ESXI могут отдавать метрики для Prometheus с эндпоинта /vsanmetrics из коробки; Развернуть prometheus exporter, который будет обращаться к VCenter, забирать данные по API, конвертировать их в формат для Prometheus, и отдавать их на эндпоинт экспортера /vsan/metrics/; Рассмотрим эти два способа, при этом первый способ мы выполним с помощью скриптов, второй с помощью Docker.</description>
+    </item>
+    
+  </channel>
+</rss>

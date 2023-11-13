@@ -3,39 +3,132 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://www.0xbbeer.ru/</loc>
-    <lastmod>2022-11-02T23:42:07+03:00</lastmod>
+    <lastmod>2023-03-09T01:03:46+03:00</lastmod>
   </url><url>
     <loc>https://www.0xbbeer.ru/categories/</loc>
-    <lastmod>2022-11-02T23:42:07+03:00</lastmod>
+    <lastmod>2023-03-09T01:03:46+03:00</lastmod>
   </url><url>
     <loc>https://www.0xbbeer.ru/categories/it/</loc>
-    <lastmod>2022-11-02T23:42:07+03:00</lastmod>
+    <lastmod>2023-03-09T01:03:46+03:00</lastmod>
   </url><url>
-    <loc>https://www.0xbbeer.ru/tags/linux/</loc>
-    <lastmod>2022-11-02T23:42:07+03:00</lastmod>
+    <loc>https://www.0xbbeer.ru/tags/netbox/</loc>
+    <lastmod>2023-03-09T01:03:46+03:00</lastmod>
   </url><url>
-    <loc>https://www.0xbbeer.ru/posts/linux-ssh-notes/</loc>
-    <lastmod>2022-11-02T23:42:07+03:00</lastmod>
+    <loc>https://www.0xbbeer.ru/posts/netbox-sync-with-vmware/</loc>
+    <lastmod>2023-03-09T01:03:46+03:00</lastmod>
   </url><url>
     <loc>https://www.0xbbeer.ru/posts/</loc>
+    <lastmod>2023-03-09T01:03:46+03:00</lastmod>
+  </url><url>
+    <loc>https://www.0xbbeer.ru/tags/</loc>
+    <lastmod>2023-03-09T01:03:46+03:00</lastmod>
+  </url><url>
+    <loc>https://www.0xbbeer.ru/tags/vmware/</loc>
+    <lastmod>2023-03-09T01:03:46+03:00</lastmod>
+  </url><url>
+    <loc>https://www.0xbbeer.ru/tags/jdk/</loc>
+    <lastmod>2023-02-10T02:04:33+03:00</lastmod>
+  </url><url>
+    <loc>https://www.0xbbeer.ru/posts/jdk-install-root-cert/</loc>
+    <lastmod>2023-02-10T02:04:33+03:00</lastmod>
+  </url><url>
+    <loc>https://www.0xbbeer.ru/tags/allure/</loc>
+    <lastmod>2023-02-10T02:03:33+03:00</lastmod>
+  </url><url>
+    <loc>https://www.0xbbeer.ru/tags/gitlab/</loc>
+    <lastmod>2023-02-10T02:03:33+03:00</lastmod>
+  </url><url>
+    <loc>https://www.0xbbeer.ru/posts/gitlab-watch-allure-in-browser/</loc>
+    <lastmod>2023-02-10T02:03:33+03:00</lastmod>
+  </url><url>
+    <loc>https://www.0xbbeer.ru/tags/mssql/</loc>
+    <lastmod>2023-02-10T02:03:33+03:00</lastmod>
+  </url><url>
+    <loc>https://www.0xbbeer.ru/posts/mssql-alwayson-logins/</loc>
+    <lastmod>2023-02-10T02:03:33+03:00</lastmod>
+  </url><url>
+    <loc>https://www.0xbbeer.ru/tags/python/</loc>
+    <lastmod>2023-01-29T15:09:47+03:00</lastmod>
+  </url><url>
+    <loc>https://www.0xbbeer.ru/tags/snmp/</loc>
+    <lastmod>2023-01-29T15:09:47+03:00</lastmod>
+  </url><url>
+    <loc>https://www.0xbbeer.ru/tags/zabbix/</loc>
+    <lastmod>2023-01-29T15:09:47+03:00</lastmod>
+  </url><url>
+    <loc>https://www.0xbbeer.ru/posts/snmpwalk-to-zabbix-template/</loc>
+    <lastmod>2023-01-29T15:09:47+03:00</lastmod>
+  </url><url>
+    <loc>https://www.0xbbeer.ru/tags/mongodb/</loc>
+    <lastmod>2023-01-29T14:45:39+03:00</lastmod>
+  </url><url>
+    <loc>https://www.0xbbeer.ru/posts/mongodb-replica-set/</loc>
+    <lastmod>2023-01-29T14:45:39+03:00</lastmod>
+  </url><url>
+    <loc>https://www.0xbbeer.ru/tags/replication/</loc>
+    <lastmod>2023-01-29T14:45:39+03:00</lastmod>
+  </url><url>
+    <loc>https://www.0xbbeer.ru/tags/arch/</loc>
+    <lastmod>2022-12-20T01:03:46+03:00</lastmod>
+  </url><url>
+    <loc>https://www.0xbbeer.ru/tags/linux/</loc>
+    <lastmod>2022-12-20T01:03:46+03:00</lastmod>
+  </url><url>
+    <loc>https://www.0xbbeer.ru/posts/arch-install/</loc>
+    <lastmod>2022-12-20T01:03:46+03:00</lastmod>
+  </url><url>
+    <loc>https://www.0xbbeer.ru/tags/prometheus/</loc>
+    <lastmod>2022-12-17T11:35:39+03:00</lastmod>
+  </url><url>
+    <loc>https://www.0xbbeer.ru/posts/vmware-vsan-monitoring-with-prometheus/</loc>
+    <lastmod>2022-12-17T11:35:39+03:00</lastmod>
+  </url><url>
+    <loc>https://www.0xbbeer.ru/tags/vsan/</loc>
+    <lastmod>2022-12-17T11:35:39+03:00</lastmod>
+  </url><url>
+    <loc>https://www.0xbbeer.ru/tags/devops/</loc>
+    <lastmod>2022-12-17T01:03:46+03:00</lastmod>
+  </url><url>
+    <loc>https://www.0xbbeer.ru/tags/jenkins/</loc>
+    <lastmod>2022-12-17T01:03:46+03:00</lastmod>
+  </url><url>
+    <loc>https://www.0xbbeer.ru/posts/jenkins-config-ssl/</loc>
+    <lastmod>2022-12-17T01:03:46+03:00</lastmod>
+  </url><url>
+    <loc>https://www.0xbbeer.ru/posts/jenkins-config-sso/</loc>
+    <lastmod>2022-12-17T01:03:46+03:00</lastmod>
+  </url><url>
+    <loc>https://www.0xbbeer.ru/posts/jenkins-install-debian/</loc>
+    <lastmod>2022-12-17T01:03:46+03:00</lastmod>
+  </url><url>
+    <loc>https://www.0xbbeer.ru/tags/keycloak/</loc>
+    <lastmod>2022-12-17T01:03:46+03:00</lastmod>
+  </url><url>
+    <loc>https://www.0xbbeer.ru/tags/sonarqube/</loc>
+    <lastmod>2022-12-17T01:03:46+03:00</lastmod>
+  </url><url>
+    <loc>https://www.0xbbeer.ru/posts/sonarqube-sso/</loc>
+    <lastmod>2022-12-17T01:03:46+03:00</lastmod>
+  </url><url>
+    <loc>https://www.0xbbeer.ru/posts/sonarqube-install/</loc>
+    <lastmod>2022-12-17T01:03:46+03:00</lastmod>
+  </url><url>
+    <loc>https://www.0xbbeer.ru/tags/ssl/</loc>
+    <lastmod>2022-12-17T01:03:46+03:00</lastmod>
+  </url><url>
+    <loc>https://www.0xbbeer.ru/tags/sso/</loc>
+    <lastmod>2022-12-17T01:03:46+03:00</lastmod>
+  </url><url>
+    <loc>https://www.0xbbeer.ru/posts/linux-ssh-notes/</loc>
     <lastmod>2022-11-02T23:42:07+03:00</lastmod>
   </url><url>
     <loc>https://www.0xbbeer.ru/tags/ssh/</loc>
     <lastmod>2022-11-02T23:42:07+03:00</lastmod>
   </url><url>
-    <loc>https://www.0xbbeer.ru/tags/</loc>
-    <lastmod>2022-11-02T23:42:07+03:00</lastmod>
-  </url><url>
-    <loc>https://www.0xbbeer.ru/tags/gitlab/</loc>
+    <loc>https://www.0xbbeer.ru/about/</loc>
     <lastmod>2022-11-02T22:35:55+03:00</lastmod>
   </url><url>
     <loc>https://www.0xbbeer.ru/posts/config-sso-for-gitlab/</loc>
-    <lastmod>2022-11-02T22:35:55+03:00</lastmod>
-  </url><url>
-    <loc>https://www.0xbbeer.ru/tags/keycloak/</loc>
-    <lastmod>2022-11-02T22:35:55+03:00</lastmod>
-  </url><url>
-    <loc>https://www.0xbbeer.ru/tags/sso/</loc>
     <lastmod>2022-11-02T22:35:55+03:00</lastmod>
   </url><url>
     <loc>https://www.0xbbeer.ru/tags/librenms/</loc>
@@ -50,29 +143,17 @@
     <loc>https://www.0xbbeer.ru/tags/openssl/</loc>
     <lastmod>2022-11-01T16:30:09+03:00</lastmod>
   </url><url>
-    <loc>https://www.0xbbeer.ru/tags/python/</loc>
-    <lastmod>2022-11-01T16:30:09+03:00</lastmod>
-  </url><url>
     <loc>https://www.0xbbeer.ru/posts/python-msca-cert-gen/</loc>
     <lastmod>2022-11-01T16:30:09+03:00</lastmod>
   </url><url>
     <loc>https://www.0xbbeer.ru/tags/tls/</loc>
     <lastmod>2022-11-01T16:30:09+03:00</lastmod>
   </url><url>
-    <loc>https://www.0xbbeer.ru/tags/netbox/</loc>
-    <lastmod>2022-10-09T01:03:46+03:00</lastmod>
-  </url><url>
     <loc>https://www.0xbbeer.ru/posts/netbox-sso-with-keycloak/</loc>
     <lastmod>2022-10-09T01:03:46+03:00</lastmod>
   </url><url>
     <loc>https://www.0xbbeer.ru/posts/python-ssl-cert-verify-failed/</loc>
     <lastmod>2022-10-09T00:09:21+03:00</lastmod>
-  </url><url>
-    <loc>https://www.0xbbeer.ru/tags/ssl/</loc>
-    <lastmod>2022-10-09T00:09:21+03:00</lastmod>
-  </url><url>
-    <loc>https://www.0xbbeer.ru/about/</loc>
-    <priority>0</priority>
   </url><url>
     <loc>https://www.0xbbeer.ru/useful-links/</loc>
     <priority>0</priority>

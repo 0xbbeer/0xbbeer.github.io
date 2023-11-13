@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>devops on 0xbbeer Blog</title>
+    <link>https://www.0xbbeer.ru/tags/devops/</link>
+    <description>Recent content in devops on 0xbbeer Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 17 Dec 2022 01:03:46 +0300</lastBuildDate><atom:link href="https://www.0xbbeer.ru/tags/devops/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Jenkins: Настройка SSL</title>
+      <link>https://www.0xbbeer.ru/posts/jenkins-config-ssl/</link>
+      <pubDate>Sat, 17 Dec 2022 01:03:46 +0300</pubDate>
+      
+      <guid>https://www.0xbbeer.ru/posts/jenkins-config-ssl/</guid>
+      <description>Получаем сертификат и ключ Для начала необходимо сгенерировать сертификат и ключ для сервера. Это можно сделать с помощью модуля описанного здесь: Автоматическая генерация сертификатов из MS CA на Linux
+Так же нам понадобиться сертификат Удостоверяющего центра.
+Конвертируем сертификат и ключ в формат PKCS12 Команда ниже конвертирует сертификат сервера, УЦ и ключ в файл jenkins.p12.
+Для этого нам нужно:
+ca.crt - Сертификат УЦ: server.key - ключ от SSL сертификата сервера; server.crt - SSL сертификат сервера; 1openssl pkcs12 -export -out jenkins.</description>
+    </item>
+    
+    <item>
+      <title>Jenkins: Настройка SSO c Keycloak</title>
+      <link>https://www.0xbbeer.ru/posts/jenkins-config-sso/</link>
+      <pubDate>Sat, 17 Dec 2022 01:03:46 +0300</pubDate>
+      
+      <guid>https://www.0xbbeer.ru/posts/jenkins-config-sso/</guid>
+      <description>Для настройки SSO c Keycloak используется следующий плагин: https://github.com/jenkinsci/keycloak-plugin?ysclid=lah1l3z94g845988575
+Установка плагина в Jenkins На странице Jenkins dashboard нажимаем Manage Jenkins.
+На странице Manage Jenkins нажимаем Manage Plugins.
+Нажимаем на вкладку Available.
+Фильтруем плагины по слову &amp;ldquo;keycloak&amp;rdquo;
+Находим и отмечаем плагин Keycloak Authentication Plugin Версия 2.3.0 , дале нажимаем “Install without restart” или “Download now and install after restart”.
+Перезапускаем Jenkins.
+1systemctl restart jenkins Создание клиента в Keycloak Заходим в админку Keycloak и создаем нового клиента.</description>
+    </item>
+    
+    <item>
+      <title>Jenkins: Установка на Debian 11</title>
+      <link>https://www.0xbbeer.ru/posts/jenkins-install-debian/</link>
+      <pubDate>Sat, 17 Dec 2022 01:03:46 +0300</pubDate>
+      
+      <guid>https://www.0xbbeer.ru/posts/jenkins-install-debian/</guid>
+      <description>Установим Open-JDK
+1sudo apt install openjdk-11-jdk Добавим GPG-Key и репозиторий c Jenkins:
+GPG Key:
+1curl -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo tee \ 2/usr/share/keyrings/jenkins-keyring.asc &amp;gt; /dev/null Репозиторий:
+1echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \ 2https://pkg.jenkins.io/debian-stable binary/ | sudo tee /etc/apt/sources.list.d/jenkins.list &amp;gt; /dev/null Обновляем:
+1apt update Устанавливаем Jenkins:
+1apt install jenkins По умолчанию сервисы в Debian запускаются автоматически.
+Запуск Jenkins выполняется небыстро. После запуска сервиса может выдать ошибку по таймауту запуска,- если это случилось, можно поправить таймаут в юнит файле Jenkinsa:</description>
+    </item>
+    
+    <item>
+      <title>SonarQube: Настройка SSO с Keycloak</title>
+      <link>https://www.0xbbeer.ru/posts/sonarqube-sso/</link>
+      <pubDate>Sat, 17 Dec 2022 01:03:46 +0300</pubDate>
+      
+      <guid>https://www.0xbbeer.ru/posts/sonarqube-sso/</guid>
+      <description>Для настройки SSO в SonaQube используется плагин: https://github.com/vaulttec/sonar-auth-oidc
+Установка плагина для аутентификации в SonarQube Установите плагин OpenID Connect Authentication for SonarQube через магазин приложений SonarQube и перезагрузите сервер.
+Создаем клиента в Keycloak Заходим в админку Keycloak и создаем нового клиента.
+Заполняем поля:
+Client ID: sonarqube; Enabled: On; Client Protocol: openid-connect; Access Type: confidential; Valid Redirect URIs: URL вашего LibreNMS, с которого будет осуществляться редирект,например, sonarqube.0xbbeer.ru/* Далее переходим на вкладку Mappers и нажимаем создать mapper.</description>
+    </item>
+    
+    <item>
+      <title>SonarQube: Установка на Debian 11</title>
+      <link>https://www.0xbbeer.ru/posts/sonarqube-install/</link>
+      <pubDate>Sat, 17 Dec 2022 01:03:46 +0300</pubDate>
+      
+      <guid>https://www.0xbbeer.ru/posts/sonarqube-install/</guid>
+      <description>Шаг 1. Установите Java 11 Обновите пакеты.
+$ sudo apt update Установите зависимости.
+$ sudo apt install wget unzip curl gnupg2 ca-certificates lsb-release socat -y Установите Java 11.
+$ sudo apt-get install openjdk-11-jre -y Шаг 2. Установите PostgreSQL Добавьте репозиторий PostgreSQL.
+$ sudo sh -c &amp;#39;echo &amp;#34;deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main&amp;#34; &amp;gt;&amp;gt; /etc/apt/sources.list.d/pgdg.list&amp;#39; Добавьте ключ PostgreSQL.
+$ wget -q https://www.postgresql.org/media/keys/ACCC4CF8.asc -O - | sudo apt-key add - Обновите систему.
+$ sudo apt update Установите PostgreSQL.</description>
+    </item>
+    
+  </channel>
+</rss>

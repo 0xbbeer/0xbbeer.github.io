@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>mssql on 0xbbeer Blog</title>
+    <link>https://www.0xbbeer.ru/tags/mssql/</link>
+    <description>Recent content in mssql on 0xbbeer Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 10 Feb 2023 02:03:33 +0300</lastBuildDate><atom:link href="https://www.0xbbeer.ru/tags/mssql/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>MSSQL: Перенос логинов в Always ON</title>
+      <link>https://www.0xbbeer.ru/posts/mssql-alwayson-logins/</link>
+      <pubDate>Fri, 10 Feb 2023 02:03:33 +0300</pubDate>
+      
+      <guid>https://www.0xbbeer.ru/posts/mssql-alwayson-logins/</guid>
+      <description>При включении базы MSSQL в Always ON необходимо перенести всех пользователей (логины), созданных для этой БД, иначе, если реплика станет мастером, к базе данных будет невозможно подключиться.
+Пользователи в двух БД должны иметь ОДИНАКОВЫЙ СИД , т.е. просто создать аналогичного пользователя с паролем НЕДОСТАТОЧНО.
+Чтобы создать пользователя на реплике с таким же СИДом, как и на мастере, необходимо:
+Создать хранимую процедуру в БД (взято здесь): 1USE [master] 2 GO 3 IF OBJECT_ID (&amp;#39;sp_hexadecimal&amp;#39;) IS NOT NULL 4 DROP PROCEDURE sp_hexadecimal 5 GO 6 CREATE PROCEDURE [dbo].</description>
+    </item>
+    
+  </channel>
+</rss>

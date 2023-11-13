@@ -1,12 +1,25 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>ssl on 0xbbeer Blog</title>
     <link>https://www.0xbbeer.ru/tags/ssl/</link>
     <description>Recent content in ssl on 0xbbeer Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 09 Oct 2022 00:09:21 +0300</lastBuildDate><atom:link href="https://www.0xbbeer.ru/tags/ssl/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 17 Dec 2022 01:03:46 +0300</lastBuildDate><atom:link href="https://www.0xbbeer.ru/tags/ssl/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Jenkins: Настройка SSL</title>
+      <link>https://www.0xbbeer.ru/posts/jenkins-config-ssl/</link>
+      <pubDate>Sat, 17 Dec 2022 01:03:46 +0300</pubDate>
+      
+      <guid>https://www.0xbbeer.ru/posts/jenkins-config-ssl/</guid>
+      <description>Получаем сертификат и ключ Для начала необходимо сгенерировать сертификат и ключ для сервера. Это можно сделать с помощью модуля описанного здесь: Автоматическая генерация сертификатов из MS CA на Linux
+Так же нам понадобиться сертификат Удостоверяющего центра.
+Конвертируем сертификат и ключ в формат PKCS12 Команда ниже конвертирует сертификат сервера, УЦ и ключ в файл jenkins.p12.
+Для этого нам нужно:
+ca.crt - Сертификат УЦ: server.key - ключ от SSL сертификата сервера; server.crt - SSL сертификат сервера; 1openssl pkcs12 -export -out jenkins.</description>
+    </item>
+    
     <item>
       <title>Python: SSL CERTIFICATE_VERIFY_FAILED</title>
       <link>https://www.0xbbeer.ru/posts/python-ssl-cert-verify-failed/</link>

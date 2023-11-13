@@ -1,1 +1,3 @@
 User-agent: *
+Disallow:
+Sitemap: https://www.0xbbeer.ru/sitemap.xml

@@ -1,12 +1,25 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>netbox on 0xbbeer Blog</title>
     <link>https://www.0xbbeer.ru/tags/netbox/</link>
     <description>Recent content in netbox on 0xbbeer Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 09 Oct 2022 01:03:46 +0300</lastBuildDate><atom:link href="https://www.0xbbeer.ru/tags/netbox/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 09 Mar 2023 01:03:46 +0300</lastBuildDate><atom:link href="https://www.0xbbeer.ru/tags/netbox/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Netbox: Синхронизация с VMWare</title>
+      <link>https://www.0xbbeer.ru/posts/netbox-sync-with-vmware/</link>
+      <pubDate>Thu, 09 Mar 2023 01:03:46 +0300</pubDate>
+      
+      <guid>https://www.0xbbeer.ru/posts/netbox-sync-with-vmware/</guid>
+      <description>В документации NetBox указано, что инструмент предназначен для того, чтобы выступать в качестве &amp;ldquo;Источника истины&amp;rdquo;. Автоматический импорт настоятельно не рекомендуется.
+Есть решение для тех, кто хочет получить функциональность автоматического импорта ВМ, сетей и прочих сущностей из VmWare в NetBox в автоматическом режиме: netbox-sync
+Требования На момент написания статьи
+Програмное обеспечение: python &amp;gt;= 3.6 NetBox &amp;gt;= 2.9 VMWare vCenter &amp;gt;= 6.0 Пакеты Python:
+packaging requests==2.24.0 wheel pyvmomi==6.7.3 aiodns==2.0.0 Установка В примере устанавливаем на Debian 11</description>
+    </item>
+    
     <item>
       <title>Настройка SSO в Netbox с помощью Keycloak</title>
       <link>https://www.0xbbeer.ru/posts/netbox-sso-with-keycloak/</link>

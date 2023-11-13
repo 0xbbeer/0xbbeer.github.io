@@ -1,12 +1,30 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>linux on 0xbbeer Blog</title>
     <link>https://www.0xbbeer.ru/tags/linux/</link>
     <description>Recent content in linux on 0xbbeer Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 02 Nov 2022 23:42:07 +0300</lastBuildDate><atom:link href="https://www.0xbbeer.ru/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 20 Dec 2022 01:03:46 +0300</lastBuildDate><atom:link href="https://www.0xbbeer.ru/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Linux: Установка Arch Linux с systemd-boot</title>
+      <link>https://www.0xbbeer.ru/posts/arch-install/</link>
+      <pubDate>Tue, 20 Dec 2022 01:03:46 +0300</pubDate>
+      
+      <guid>https://www.0xbbeer.ru/posts/arch-install/</guid>
+      <description>Памятка себе по установке Arch linux.
+Установка Проверим получение адреса
+1ip a Разметим диск
+1cfdisk /dev/sda1 EFI System 512 M
+/dev/sda2 SWAP 8G
+/dev/sda3 Linux root (x86-64)
+Создадим ФС
+Для root 1mkfs.ext4 /dev/sda3 Для SWAP 1mkswap /dev/sda2 Для EFI Boot 1mkfs.fat -F32 /dev/sda1 Примонтируем разделы
+1# root 2mount /dev/sda3 /mnt 3# efi 4mount --mkdir /dev/sda1 /mnt/boot 5# swap 6swapon /dev/sda2 Установим основные пакеты
+1pacstrap -K /mnt base linux linux-firmware base-devel Сгенерируем fstab</description>
+    </item>
+    
     <item>
       <title>Linux: SSH - полезные заметки</title>
       <link>https://www.0xbbeer.ru/posts/linux-ssh-notes/</link>
