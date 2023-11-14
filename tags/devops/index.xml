@@ -44,12 +44,10 @@ ca.crt - Сертификат УЦ: server.key - ключ от SSL сертиф�
       <guid>https://www.0xbbeer.ru/posts/jenkins-install-debian/</guid>
       <description>Установим Open-JDK
 1sudo apt install openjdk-11-jdk Добавим GPG-Key и репозиторий c Jenkins:
-GPG Key:
-1curl -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo tee \ 2/usr/share/keyrings/jenkins-keyring.asc &amp;gt; /dev/null Репозиторий:
-1echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \ 2https://pkg.jenkins.io/debian-stable binary/ | sudo tee /etc/apt/sources.list.d/jenkins.list &amp;gt; /dev/null Обновляем:
+GPG Key: 1curl -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo tee \ 2/usr/share/keyrings/jenkins-keyring.asc &amp;gt; /dev/null Репозиторий: 1echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \ 2https://pkg.jenkins.io/debian-stable binary/ | sudo tee /etc/apt/sources.list.d/jenkins.list &amp;gt; /dev/null Обновляем:
 1apt update Устанавливаем Jenkins:
 1apt install jenkins По умолчанию сервисы в Debian запускаются автоматически.
-Запуск Jenkins выполняется небыстро. После запуска сервиса может выдать ошибку по таймауту запуска,- если это случилось, можно поправить таймаут в юнит файле Jenkinsa:</description>
+Запуск Jenkins выполняется небыстро. После запуска сервиса может выдать ошибку по таймауту запуска - если это случилось, можно поправить таймаут в юнит файле Jenkins-a:</description>
     </item>
     
     <item>
@@ -71,13 +69,13 @@ Client ID: sonarqube; Enabled: On; Client Protocol: openid-connect; Access Type:
       <pubDate>Sat, 17 Dec 2022 01:03:46 +0300</pubDate>
       
       <guid>https://www.0xbbeer.ru/posts/sonarqube-install/</guid>
-      <description>Шаг 1. Установите Java 11 Обновите пакеты.
-$ sudo apt update Установите зависимости.
-$ sudo apt install wget unzip curl gnupg2 ca-certificates lsb-release socat -y Установите Java 11.
-$ sudo apt-get install openjdk-11-jre -y Шаг 2. Установите PostgreSQL Добавьте репозиторий PostgreSQL.
-$ sudo sh -c &amp;#39;echo &amp;#34;deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main&amp;#34; &amp;gt;&amp;gt; /etc/apt/sources.list.d/pgdg.list&amp;#39; Добавьте ключ PostgreSQL.
-$ wget -q https://www.postgresql.org/media/keys/ACCC4CF8.asc -O - | sudo apt-key add - Обновите систему.
-$ sudo apt update Установите PostgreSQL.</description>
+      <description>Установите Java 11 Обновите пакеты.
+1$ sudo apt update Установите зависимости.
+1$ sudo apt install wget unzip curl gnupg2 ca-certificates lsb-release socat -y Установите Java 11.
+1$ sudo apt-get install openjdk-11-jre -y Установите PostgreSQL Добавьте репозиторий PostgreSQL.
+1$ sudo sh -c &amp;#39;echo &amp;#34;deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main&amp;#34; &amp;gt;&amp;gt; /etc/apt/sources.list.d/pgdg.list&amp;#39; Добавьте ключ PostgreSQL.
+1$ wget -q https://www.postgresql.org/media/keys/ACCC4CF8.asc -O - | sudo apt-key add - Обновите систему.
+1$ sudo apt update Установите PostgreSQL.</description>
     </item>
     
   </channel>

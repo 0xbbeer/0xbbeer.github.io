@@ -26,13 +26,13 @@ Client ID: sonarqube; Enabled: On; Client Protocol: openid-connect; Access Type:
       <pubDate>Sat, 17 Dec 2022 01:03:46 +0300</pubDate>
       
       <guid>https://www.0xbbeer.ru/posts/sonarqube-install/</guid>
-      <description>Шаг 1. Установите Java 11 Обновите пакеты.
-$ sudo apt update Установите зависимости.
-$ sudo apt install wget unzip curl gnupg2 ca-certificates lsb-release socat -y Установите Java 11.
-$ sudo apt-get install openjdk-11-jre -y Шаг 2. Установите PostgreSQL Добавьте репозиторий PostgreSQL.
-$ sudo sh -c &amp;#39;echo &amp;#34;deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main&amp;#34; &amp;gt;&amp;gt; /etc/apt/sources.list.d/pgdg.list&amp;#39; Добавьте ключ PostgreSQL.
-$ wget -q https://www.postgresql.org/media/keys/ACCC4CF8.asc -O - | sudo apt-key add - Обновите систему.
-$ sudo apt update Установите PostgreSQL.</description>
+      <description>Установите Java 11 Обновите пакеты.
+1$ sudo apt update Установите зависимости.
+1$ sudo apt install wget unzip curl gnupg2 ca-certificates lsb-release socat -y Установите Java 11.
+1$ sudo apt-get install openjdk-11-jre -y Установите PostgreSQL Добавьте репозиторий PostgreSQL.
+1$ sudo sh -c &amp;#39;echo &amp;#34;deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main&amp;#34; &amp;gt;&amp;gt; /etc/apt/sources.list.d/pgdg.list&amp;#39; Добавьте ключ PostgreSQL.
+1$ wget -q https://www.postgresql.org/media/keys/ACCC4CF8.asc -O - | sudo apt-key add - Обновите систему.
+1$ sudo apt update Установите PostgreSQL.</description>
     </item>
     
   </channel>

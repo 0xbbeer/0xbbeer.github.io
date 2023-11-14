@@ -21,7 +21,7 @@ packaging requests==2.24.0 wheel pyvmomi==6.7.3 aiodns==2.0.0 Установка
     </item>
     
     <item>
-      <title>Настройка SSO в Netbox с помощью Keycloak</title>
+      <title>Netbox: Настройка SSO с помощью Keycloak</title>
       <link>https://www.0xbbeer.ru/posts/netbox-sso-with-keycloak/</link>
       <pubDate>Sun, 09 Oct 2022 01:03:46 +0300</pubDate>
       
@@ -30,7 +30,7 @@ packaging requests==2.24.0 wheel pyvmomi==6.7.3 aiodns==2.0.0 Установка
 В документации Netbox описана настройка только для двух провайдеров :
 Microsoft Azure AD Okta Netbox использует библиотеку python-soc-auth для взаимодействия с провайдерами.
 Список доступных провайдеров можно посмотреть тут
-Настройка клиента в Keycloak Заходим в веб интерфейс Keycloak, переходим на вкладку Clients и создаем нового клиента.</description>
+Настройка клиента в Keycloak Заходим в веб интерфейс Keycloak, переходим на вкладку Clients и создаем нового клиента:</description>
     </item>
     
   </channel>
